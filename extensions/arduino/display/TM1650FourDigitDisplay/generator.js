@@ -22,10 +22,10 @@ function addGenerator (Blockly) {
     Blockly.Arduino.tm1650_display = function (block) {
         const sta = block.getFieldValue('STA');
         if(sta == 'true') {
-            return `tm1650.displayOn();`
+            return `tm1650.displayOn();\n`
         }
         else {
-            return `tm1650.displayOff();`
+            return `tm1650.displayOff();\n`
         }
     };
 

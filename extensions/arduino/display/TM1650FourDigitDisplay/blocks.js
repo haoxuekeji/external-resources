@@ -118,8 +118,8 @@ function addBlocks (Blockly) {
                         type: 'field_dropdown',
                         name: 'STA',
                         options: [
-                            [Blockly.Msg.TM1650_STATE_ON, 'true'],
-                            [Blockly.Msg.TM1650_STATE_OFF, 'false']
+                            [Blockly.Msg.TM1650_STATE_BRIGHT, 'true'],
+                            [Blockly.Msg.TM1650_STATE_DROWN, 'false']
                         ]
                     }
                 ],
