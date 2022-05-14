@@ -8,8 +8,7 @@ const u8g2 = formatMessage => ({
     iconURL: `asset/u8g2.png`,
     description: formatMessage({
         id: 'u8g2.description',
-        default: 'U8g2 is a general graphics library for multiple screens, ' +
-            'which is suitable for LCD (base on ST7920) or OLED (base on SSD1306) screens.'
+        default: 'U8g2 is a general graphics library for multiple screens, which is suitable for LCD (base on ST7920) or OLED (base on SSD1306) screens.'
     }),
     featured: true,
     blocks: 'blocks.js',
@@ -17,6 +16,7 @@ const u8g2 = formatMessage => ({
     toolbox: 'toolbox.js',
     msg: 'msg.js',
     library: 'lib',
+    official: true,
     tags: ['display'],
     helpLink: 'https://openblockcc.gitee.io/wiki/main'
 });

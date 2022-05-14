@@ -11,14 +11,14 @@ const insertSourceCode = formatMessage => ({
     iconURL: `asset/insertSourceCode.png`,
     description: formatMessage({
         id: 'insertSourceCode.description',
-        default: 'Insert the source code directly into the blocks, so that professional ' +
-            'users can realize some more advanced functions.'
+        default: 'Insert the source code directly into the blocks, so that professional users can realize some more advanced functions.'
     }),
     featured: true,
     blocks: 'blocks.js',
     generator: 'generator.js',
     toolbox: 'toolbox.js',
     msg: 'msg.js',
+    official: true,
     tags: ['other'],
     helpLink: 'https://openblockcc.gitee.io/wiki/main'
 });
