@@ -275,6 +275,13 @@ void TM1650::displayString(char *aString)
 	}
 }
 
+
+void TM1650::displayString(String s)
+{
+	displayString(s.c_str());
+}
+
+
 /** Display string on the display in a running fashion
  * aString = character array to be displayed
  *
