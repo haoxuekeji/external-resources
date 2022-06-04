@@ -1,9 +1,18 @@
+
 # external-resources(deprecate)
 
-[![Release](https://github.com/openblockcc/external-resources/actions/workflows/release.yml/badge.svg)](https://github.com/openblockcc/external-resources/actions/workflows/release.yml)
-![GitHub](https://img.shields.io/github/license/openblockcc/external-resources)
+
 
 Provide external devices and extensions to Openblock.
 
-## Notice
-This project has been abandoned and all core content has been moved to https://github.com/openblockcc/external-resources-v2. However, since this repository is related to the online update function of the previous version of openblock desktop v2.2.x and link v1.0.0, this repository will not be deleted, but it will no longer be maintained and updated. Please upgrade your software to the latest version as soon as possible to use external-resources-v2 resources.
+
+## Contribute
+
+Please visit the wiki: https://wiki.openblock.cc/ to learn how to write extensions.
+
+Notice that offical attributes can only be officially marked by the community, please do not add the offical attribute to the extension of pr.
+
+## Localization
+
+All extensions marked as offical will be included in the official translation maintenance list, do not modify the translation file content of these files directly. You should apply to join the OpenBlock team on transifex to translate these content: https://www.transifex.com/openblockcc/public/
+

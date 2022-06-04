@@ -1,3 +1,9 @@
 {
-    "repository": "haoxuekeji/external-resources"
+    "repository": "haoxuekeji/external-resources",
+    "updater": {
+        "default": {
+            "provider": "github",
+            "repo": "haoxuekeji/external-resources"
+        }
+    }
 }

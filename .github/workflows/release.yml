@@ -17,21 +17,12 @@ jobs:
         with:
           node-version: '14.x'
 
-      - run: npm i -g openblock-resource-cli
-
-      - name: Sync translations
-        run: |
-          export TX_TOKEN=${{ secrets.TX_TOKEN }}
-          i18n-extract
-          i18n-push
-          i18n-update
+      - run: npm i -g openblock-resource-cli@0.2.5
 
       - name: Pro-process resources
         run: |
-          i18n-extract
           opt-size
-          gen-config --version=${{ github.ref_name }} --repo=openblockcc/external-resources --cdn=https://cdn.openblock.cc/
-          gen-hash
+          gen-config --version=${{ github.ref_name }}
 
       - name: Get version
         id: get-version
@@ -46,7 +37,7 @@ jobs:
             dest: external-resources-${{ steps.get-version.outputs.VERSION }}.zip
 
       - name: Checksum
-        run: sha256sum external-resources-*.zip >> checksums.txt
+        run: sha256sum external-resources-*.zip >> ${{ steps.get-version.outputs.VERSION }}-checksums-sha256.txt
 
       - name: Create Release
         id: create_release
@@ -57,15 +48,29 @@ jobs:
           tag_name: ${{ github.ref_name }}
           release_name: OpenBlock External Resources ${{ github.ref_name }}
           body: |
+            ## Change Log (en)
+
             - **New feature**
 
-                1. First Change
-                2. Second Change
+                1. Feature 1.
+                2. Feature 2.
 
             - **Fix bug**
 
-                1. First Change
-                2. Second Change
+                1. Bug 1.
+                2. Bug 2.
+
+            ## 更改日志 (zh-cn)
+
+            - **新功能**
+
+                1. 功能1。
+                2. 功能2。
+
+            - **修复错误**
+
+                1. 错误1。
+                2. 错误2。
           draft: true
           prerelease: false
 
@@ -85,6 +90,14 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: checksums.txt
+          asset_path: ${{ steps.get-version.outputs.VERSION }}-checksums-sha256.txt
           asset_name: ${{ steps.get-version.outputs.VERSION }}-checksums-sha256.txt
           asset_content_type: text/plain
+
+      # Upload to digitalocean
+      - name: Release resources to digital ocean spaces
+        run: |
+          export DO_KEY_ID=${{ secrets.DO_KEY_ID }}
+          export DO_SECRET_KEY=${{ secrets.DO_SECRET_KEY }}
+          upload-file --filePath=external-resources-${{ steps.get-version.outputs.VERSION }}.zip  --endPoint=https://sgp1.digitaloceanspaces.com --bucket=openblock
+          upload-file --filePath=${{ steps.get-version.outputs.VERSION }}-checksums-sha256.txt  --endPoint=https://sgp1.digitaloceanspaces.com --bucket=openblock
