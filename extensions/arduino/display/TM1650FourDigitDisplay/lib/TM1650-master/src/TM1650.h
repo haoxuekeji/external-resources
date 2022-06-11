@@ -74,7 +74,9 @@ class TM1650 {
 	void	displayOn();
 	void	displayOff();
 	void	displayState(bool aState);
+  void  displaychar(char *aString);
 	void	displayString(char *aString);
+  void  displayString(String s);
 	int 	displayRunning(char *aString);
 	int 	displayRunningShift();
 	void	setBrightness(unsigned int aValue = TM1650_MAX_BRIGHT);
@@ -253,7 +255,7 @@ void TM1650::clear()
  * Only first N positions of the string are displayed if
  *  the string is longer than the number of digits
  */
-void TM1650::displayString(char *aString)
+void TM1650::displaychar(char *aString)
 {
 	if (!iActive) return;
 	for (int i=0; i<iNumDigits; i++) {
@@ -278,9 +280,13 @@ void TM1650::displayString(char *aString)
 
 void TM1650::displayString(String s)
 {
-	displayString(s.c_str());
+  displaychar(s.c_str());
 }
 
+void TM1650::displayString(char *aString)
+{
+   displaychar(aString);
+}
 
 /** Display string on the display in a running fashion
  * aString = character array to be displayed
