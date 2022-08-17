@@ -3,11 +3,10 @@ const ultrasonic = formatMessage => ({
         id: 'ultrasonic.name',
         default: 'Ultrasonic'
     }),
-    extensionId: 'ultrasonic',
+    extensionId: 'espUltrasonic',
     version: '1.0.0',
-    supportDevice: ['arduinoUno', 'arduinoNano', 'arduinoLeonardo',
-        'arduinoMega2560', 'arduinoEsp32', 'arduinoEsp8266'],
-    author: 'Liang',
+    supportDevice: ['microPythonEsp32', 'microPythonEsp8266'],
+    author: 'ArthurZheng',
     iconURL: `asset/ultrasonic.png`,
     description: formatMessage({
         id: 'ultrasonic.description',
