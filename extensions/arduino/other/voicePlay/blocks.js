@@ -5,23 +5,32 @@ function addBlocks (Blockly) {
     const colour = '#00DD77';
     const secondaryColour = '#00AA55';
 
+    const sound = [
+        ['0', '0'],
+        ['1', '1'],
+        ['2', '2'],
+        ['3', '3'],
+        ['4', '4'],
+        ['5', '5'],
+        ['6', '6'],
+        ['7', '7'],
+        ['8', '8'],
+        ['9', '9'],
+        ['十', '10'],
+        ['百', '11'],
+        ['千', '12'],
+    ];
+
     const digitalPins = Blockly.getMainWorkspace().getFlyout()
         .getFlyoutItems()
         .find(block => block.type === 'arduino_pin_setDigitalOutput')
         .getField('PIN')
         .getOptions();
 
-    Blockly.Blocks.sdCard_init = {
+    Blockly.Blocks.voice_play_init = {
         init: function () {
             this.jsonInit({
-                message0: Blockly.Msg.SDCARD_INIT,
-                args0: [
-                    {
-                        type: 'field_dropdown',
-                        name: 'CS',
-                        options: digitalPins
-                    }
-                ],
+                message0: Blockly.Msg.VOICE_PLAY_INIT,
                 colour: colour,
                 secondaryColour: secondaryColour,
                 extensions: ['shape_statement']
@@ -29,25 +38,23 @@ function addBlocks (Blockly) {
         }
     };
 
-    Blockly.Blocks.sdCard_openFile = {
+    Blockly.Blocks.voice_play_combinationPlay = {
         init: function () {
             this.jsonInit({
-                message0: Blockly.Msg.SDCARD_OPENFILE,
-                args0: [
+                message0: Blockly.Msg.VOICE_PLAY_COMBINATIONPLAY,
+                args0: [                    
                     {
-                        type: 'input_value',
-                        name: 'NAME'
+                        type: 'field_dropdown',
+                        name: 'PIN',
+                        options: digitalPins
                     },
                     {
                         type: 'field_dropdown',
-                        name: 'MODE',
-                        options: [
-                            [Blockly.Msg.SDCARD_MODE_READ, 'FILE_READ'],
-                            [Blockly.Msg.SDCARD_MODE_READWRITE, 'FILE_WRITE']
-                        ]
+                        name: 'NO',
+                        options: sound
                     }
+
                 ],
-                tooltip: Blockly.Msg.SDCARD_OPENFILE_TOOLTIP,
                 colour: colour,
                 secondaryColour: secondaryColour,
                 extensions: ['shape_statement']
@@ -55,10 +62,21 @@ function addBlocks (Blockly) {
         }
     };
 
-    Blockly.Blocks.sdCard_closeFile = {
+    Blockly.Blocks.voic_play_playTemperature  = {
         init: function () {
             this.jsonInit({
-                message0: Blockly.Msg.SDCARD_CLOSEFILE,
+                message0: Blockly.Msg.VOICE_PLAY_TEMPERATURE,
+                args0: [                    
+                    {
+                        type: 'field_dropdown',
+                        name: 'PIN',
+                        options: digitalPins
+                    },
+                    {
+                        type: 'input_value',
+                        name: 'DATA'
+                    }
+                ],
                 colour: colour,
                 secondaryColour: secondaryColour,
                 extensions: ['shape_statement']

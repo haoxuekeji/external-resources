@@ -1,8 +1,6 @@
 #ifndef _QXCSOUNDCHIP_H_
 #define _QXCSOUNDCHIP_H_
 
-
-
 #include<Arduino.h>
 
 volatile boolean DATA;

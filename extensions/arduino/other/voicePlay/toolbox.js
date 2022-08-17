@@ -3,11 +3,10 @@
 /* eslint-disable require-jsdoc */
 function addToolbox () {
     return `
-<category name="%{BKY_SDCARD_CATEGORY}" id="SDCARD_CATEGORY" colour="#00DD77" secondaryColour="#00AA55">
-    <block type="sdCard_init" id="sdCard_init">
-        <field name="CS">2</field>
+<category name="%{BKY_VOICE_PLAY_CATEGORY}" id="SDCARD_CATEGORY" colour="#00DD77" secondaryColour="#00AA55">
+    <block type="voice_play_init" id="voice_play_init">
     </block>
-    <block type="sdCard_openFile" id="sdCard_openFile">
+    <block type="voic_play_combinationPlay" id="voic_play_combinationPlay">
         <value name="NAME">
             <shadow type="text">
                 <field name="TEXT">OB.txt</field>
