@@ -1,5 +1,5 @@
-#ifndef _QXCSOUNDCHIP_H_
-#define _QXCSOUNDCHIP_H_
+#ifndef _SOUNDCHIP_H_
+#define _SOUNDCHIP_H_
 
 #include<Arduino.h>
 

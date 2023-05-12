@@ -2,38 +2,29 @@
 /* eslint-disable require-jsdoc */
 function addMsg (Blockly) {
     Object.assign(Blockly.ScratchMsgs.locales.en, {
-        SDCARD_CATEGORY: 'SD Card',
-        SDCARD_INIT: 'init sd card pin CS %1',
-        SDCARD_OPENFILE: 'sd card open file %1 mode %2',
-        SDCARD_MODE_READ: 'read only',
-        SDCARD_MODE_READWRITE: 'read & write',
-        SDCARD_OPENFILE_TOOLTIP: 'If file not exists, it will be created automatically.',
-        SDCARD_CLOSEFILE: 'sd card close file',
-        SDCARD_PRINT: 'print %1 %2 to file',
-        SDCARD_EOL_WARP: 'warp',
-        SDCARD_EOL_NOWARP: 'no-warp',
-        SDCARD_FILEDATAAVAILABLE: 'sd card file data available',
-        SDCARD_READFILEDATA: 'sd card read file data',
-        SDCARD_ISFILEEXISTS: 'sd card file %1 exists?',
-        SDCARD_CREATEFILE: 'sd card create file %1',
-        SDCARD_DELETEFILE: 'sd card delet file %1'
+        VOICE_PLAY_CATEGORY: 'voice play',
+        VOICE_PLAY_COMBINATIONPLAY: 'pin%1 voice combination play %2',
+        VOICE_PLAY_TEMPERATURE: 'pin%1 play temperature%2',
+        VOICE_PLAY_HUMIDITY: 'pin%1play hummidity%2 %',
+        VOICE_PLAY_INTNUMBER: 'pin%1play int number2',
+        VOICE_PLAY_FLOAT_NUMBER: 'pin%1play float number%2',
+        VOICE_PLAY_SERIAL_NUMBER: 'pin%1play serial number%2',
+        VOICE_PLAY_DISTANCE_NUMBER: 'pin%1play distance%2cm',
+        VOICE_PLAY_FULLCURRENT_TIME: 'pin%1play full current time%2hour%3min%4sec',
+        VOICE_PLAY_CURRENT_TIME: 'pin%1play current time%2hour%3min',
+
     });
     Object.assign(Blockly.ScratchMsgs.locales['zh-cn'], {
-        SDCARD_CATEGORY: 'SD卡',
-        SDCARD_INIT: '初始化sd卡引脚 CS %1',
-        SDCARD_OPENFILE: 'sd卡打开文件 %1 模式 %2',
-        SDCARD_MODE_READ: '只读',
-        SDCARD_MODE_READWRITE: '读写',
-        SDCARD_OPENFILE_TOOLTIP: '如果文件不存在，它将被自动创建。',
-        SDCARD_CLOSEFILE: 'sd卡关闭文件',
-        SDCARD_PRINT: '打印 %1 %2 到文件',
-        SDCARD_EOL_WARP: '换行',
-        SDCARD_EOL_NOWARP: '不换行',
-        SDCARD_FILEDATAAVAILABLE: 'sd卡文件可读取字节数',
-        SDCARD_READFILEDATA: 'sd卡读取文件数据',
-        SDCARD_ISFILEEXISTS: 'sd卡文件 %1 存在？',
-        SDCARD_CREATEFILE: 'sd卡创建文件 %1',
-        SDCARD_DELETEFILE: 'sd卡删除文件 %1'
+        VOICE_PLAY_CATEGORY: '语音播放',
+        VOICE_PLAY_COMBINATIONPLAY: '管脚%1播放日常语%2',
+        VOICE_PLAY_TEMPERATURE: '管脚%1播放温度%2摄氏度',
+        VOICE_PLAY_HUMIDITY: '管脚%1播放湿度%2 %',
+        VOICE_PLAY_INTNUMBER: '管脚%1播放整数%2',
+        VOICE_PLAY_FLOAT_NUMBER: '管脚%1播放小数%2',
+        VOICE_PLAY_SERIAL_NUMBER: '管脚%1播放号码%2',
+        VOICE_PLAY_DISTANCE_NUMBER: '管脚%1播放距离%2厘米',
+        VOICE_PLAY_FULLCURRENT_TIME: '管脚%1播放完整时间%2时%3分%4秒',
+        VOICE_PLAY_CURRENT_TIME: '管脚%1播放当前时间%2时%3分',
     });
     return Blockly;
 }

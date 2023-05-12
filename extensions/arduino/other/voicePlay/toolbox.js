@@ -3,47 +3,91 @@
 /* eslint-disable require-jsdoc */
 function addToolbox () {
     return `
-<category name="%{BKY_VOICE_PLAY_CATEGORY}" id="SDCARD_CATEGORY" colour="#00DD77" secondaryColour="#00AA55">
-    <block type="voice_play_init" id="voice_play_init">
+<category name="%{BKY_VOICE_PLAY_CATEGORY}" id="VOICE_PLAY_CATEGORY" colour="#00DD77" secondaryColour="#00AA55">
+    <block type="voice_play_combinationPlay" id="voice_play_combinationPlay">
+    <field name="PIN">2</field>   
+    <field name="NO">0</field>       
     </block>
-    <block type="voic_play_combinationPlay" id="voic_play_combinationPlay">
-        <value name="NAME">
-            <shadow type="text">
-                <field name="TEXT">OB.txt</field>
+    <block type="voice_play_playTemperature" id="voice_play_playTemperature">
+    <field name="PIN">2</field>   
+        <value name="DATA">
+            <shadow type="math_number">
+                <field name="NUM">26.5</field>
             </shadow>
         </value>
     </block>
-    <block type="sdCard_closeFile" id="sdCard_closeFile"></block>
-    <block type="sdCard_print" id="sdCard_print">
+    <block type="voice_play_playHumidity" id="voice_play_playHumidity">
+    <field name="PIN">2</field>   
+        <value name="DATA">
+            <shadow type="math_integer">
+                <field name="NUM">50</field>
+            </shadow>
+        </value>
+    </block>
+    <block type="voice_play_playIntNumber" id="voice_play_playIntNumber">
+    <field name="PIN">2</field>   
+        <value name="DATA">
+            <shadow type="math_integer">
+                <field name="NUM">66</field>
+            </shadow>
+        </value>
+    </block>
+    <block type="voice_play_playFloatNumber" id="voice_play_playFloatNumber">
+    <field name="PIN">2</field>   
+        <value name="DATA">
+            <shadow type="math_whole_number">
+                <field name="NUM">100.25</field>
+            </shadow>
+        </value>
+    </block>
+    <block type="voice_play_playSerialNumber" id="voice_play_playSerialNumber">
+    <field name="PIN">2</field>   
         <value name="DATA">
             <shadow type="text">
-                <field name="TEXT">Hello Openblock</field>
+                <field name="TEXT">13607877924</field>
             </shadow>
         </value>
     </block>
-    <block type="sdCard_fileDataAvailable" id="sdCard_fileDataAvailable"></block>
-    <block type="sdCard_readFileData" id="sdCard_readFileData"></block>
-    <block type="sdCard_isFileExists" id="sdCard_isFileExists">
-        <value name="NAME">
-            <shadow type="text">
-                <field name="TEXT">OB.txt</field>
+    <block type="voice_play_playDistance" id="voice_play_playDistance">
+    <field name="PIN">2</field>   
+        <value name="DATA">
+            <shadow type="math_number">
+                <field name="NUM">30</field>
             </shadow>
         </value>
     </block>
-    <block type="sdCard_createFile" id="sdCard_createFile">
-        <value name="NAME">
-            <shadow type="text">
-                <field name="TEXT">OB.txt</field>
-            </shadow>
-        </value>
+    <block type="voice_play_playFullCurrentTime" id="voice_play_playFullCurrentTime">
+    <field name="PIN">2</field>   
+    <value name="HOUR">
+        <shadow type="math_integer">
+            <field name="NUM">12</field>
+        </shadow>
+    </value>   
+    <value name="MIN">
+        <shadow type="math_integer">
+            <field name="NUM">30</field>
+        </shadow>
+    </value>   
+    <value name="SEC">
+        <shadow type="math_integer">
+            <field name="NUM">50</field>
+        </shadow>
+    </value>
     </block>
-    <block type="sdCard_deleteFile" id="sdCard_deleteFile">
-        <value name="NAME">
-            <shadow type="text">
-                <field name="TEXT">OB.txt</field>
-            </shadow>
-        </value>
+    <block type="voice_play_playCurrentTime" id="voice_play_playFullCurrentTime">
+    <field name="PIN">2</field>   
+    <value name="HOUR">
+        <shadow type="math_integer">
+            <field name="NUM">12</field>
+        </shadow>
+    </value>   
+    <value name="MIN">
+        <shadow type="math_integer">
+            <field name="NUM">30</field>
+        </shadow>
+    </value>   
     </block>
+
 </category>`;
 }
 

@@ -1,4 +1,4 @@
-const sdCard = formatMessage => ({
+const voicePlay = formatMessage => ({
     name: formatMessage({
         id: 'voicPlay.name',
         default: 'voic play Module'
@@ -23,4 +23,4 @@ const sdCard = formatMessage => ({
     helpLink: 'https://haoxuekeji.com'
 });
 
-module.exports = sdCard;
+module.exports = voicePlay;
