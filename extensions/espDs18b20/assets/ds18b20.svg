@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="372" viewBox="0 0 600 372">
+  <rect width="600" height="372" fill="#4C97FF"/>
+  <rect x="150" y="160" width="180" height="52" rx="26" fill="#c0c4cc"/>
+  <rect x="320" y="150" width="130" height="72" rx="10" fill="#8a9099"/>
+  <rect x="60" y="176" width="90" height="20" rx="10" fill="#333c4d"/>
+  <text x="385" y="196" font-family="monospace" font-size="22" fill="#ffffff" text-anchor="middle">DS18B20</text>
+  <text x="300" y="100" font-family="Helvetica, Arial, sans-serif" font-size="52" font-weight="bold" fill="#ffffff" text-anchor="middle">25.6 &#176;C</text>
+  <path d="M 200 280 q 20 14 40 0 t 40 0 t 40 0 t 40 0" fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="round" opacity="0.75"/>
+</svg>

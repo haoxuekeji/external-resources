@@ -5,7 +5,7 @@ function registerBlocks (Blockly) {
     const color = '#D39DDB';
     const secondaryColour = '#BA55D3';
 
-    const digitalPins = Blockly.Device.getPinOptions('microPython_pin_setDigitalOutput');
+    const digitalPins = Blockly.Device.getPinOptions('microPython_pin_esp32SetDigitalOutput');
 
     Blockly.Blocks.ultrasonic_readDistance = {
         init: function () {

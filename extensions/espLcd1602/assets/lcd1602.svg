@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="372" viewBox="0 0 600 372">
+  <rect width="600" height="372" fill="#0FBD8C"/>
+  <rect x="90" y="96" width="420" height="180" rx="14" fill="#0B8E69"/>
+  <rect x="120" y="126" width="360" height="120" rx="6" fill="#1a3a8f"/>
+  <text x="140" y="178" font-family="monospace" font-size="40" fill="#9fd8ff">Hello</text>
+  <text x="140" y="228" font-family="monospace" font-size="40" fill="#9fd8ff">OpenBlock!</text>
+</svg>
