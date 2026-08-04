@@ -4,14 +4,37 @@ import time
 
 
 class LCD1602:
-    def __init__(self, i2c, addr=0x27):
+    def __init__(self, i2c, addr=None):
         self.i2c = i2c
-        self.addr = addr
+        self.addr = self._resolve_addr(addr)
         self.bl = 0x08
         time.sleep_ms(50)
         for cmd in (0x33, 0x32, 0x28, 0x0C, 0x06, 0x01):
             self.command(cmd)
             time.sleep_ms(5)
+
+    def _resolve_addr(self, requested):
+        devices = self.i2c.scan()
+        if requested in devices:
+            return requested
+
+        # PCF8574 LCD backpacks most commonly use 0x27 or 0x3F.
+        # Keep old projects working by falling back when their saved address
+        # does not match the actual backpack address.
+        candidates = [addr for addr in (0x27, 0x3F) if addr in devices]
+        if len(candidates) == 1:
+            return candidates[0]
+        if requested is None and candidates:
+            return candidates[0]
+        if requested is None and len(devices) == 1:
+            return devices[0]
+
+        found = ', '.join('0x%02X' % addr for addr in devices) or 'none'
+        wanted = 'auto' if requested is None else '0x%02X' % requested
+        raise OSError(
+            'LCD1602 not found (requested %s, I2C scan: %s). '
+            'Check SDA/SCL, power, wiring and backpack address.' % (wanted, found)
+        )
 
     def _write4(self, data):
         # Pulse EN (bit2) with the payload, keeping backlight bit.

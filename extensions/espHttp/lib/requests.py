@@ -1,6 +1,12 @@
 import socket
 
 
+def _ob_to_bytes(value):
+    if isinstance(value, str):
+        return value.encode()
+    return value
+
+
 class Response:
     def __init__(self, f):
         self.raw = f
@@ -49,6 +55,8 @@ def request(
 
     redirect = None  # redirection url, None means no redirection
     chunked_data = data and getattr(data, "__next__", None) and not getattr(data, "__len__", None)
+    if isinstance(data, str):
+        data = data.encode()
 
     if auth is not None:
         import binascii
@@ -96,7 +104,7 @@ def request(
             context = tls.SSLContext(tls.PROTOCOL_TLS_CLIENT)
             context.verify_mode = tls.CERT_NONE
             s = context.wrap_socket(s, server_hostname=host)
-        s.write(b"%s /%s HTTP/1.0\r\n" % (method, path))
+        s.write(("%s /%s HTTP/1.0\r\n" % (method, path)).encode())
 
         if "Host" not in headers:
             headers["Host"] = host
@@ -122,9 +130,9 @@ def request(
 
         # Iterate over keys to avoid tuple alloc
         for k in headers:
-            s.write(k)
+            s.write(_ob_to_bytes(k))
             s.write(b": ")
-            s.write(headers[k])
+            s.write(_ob_to_bytes(headers[k]))
             s.write(b"\r\n")
 
         s.write(b"\r\n")
@@ -136,7 +144,7 @@ def request(
                         s.write(b"%x\r\n" % len(chunk))
                         s.write(chunk)
                         s.write(b"\r\n")
-                    s.write("0\r\n\r\n")
+                    s.write(b"0\r\n\r\n")
                 else:
                     for chunk in data:
                         s.write(chunk)

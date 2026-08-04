@@ -7,7 +7,7 @@ function registerToolboxs () {
     <block type="espLcd1602_init" id="espLcd1602_init">
         <field name="SDA">21</field>
         <field name="SCL">22</field>
-        <field name="ADDR">0x27</field>
+        <field name="ADDR">None</field>
     </block>
     <block type="espLcd1602_showText" id="espLcd1602_showText">
         <field name="ROW">0</field>

@@ -4,7 +4,7 @@ const espMqtt = formatMessage => ({
         default: 'MQTT'
     }),
     extensionId: 'espMqtt',
-    version: '1.0.0',
+    version: '1.2.0',
     supportDevice: ['microPythonEsp32', 'microPythonEsp8266'],
     author: 'OpenBlock',
     iconURL: `assets/mqtt.svg`,
@@ -17,6 +17,8 @@ const espMqtt = formatMessage => ({
     generator: 'generator.js',
     toolbox: 'toolbox.js',
     translations: 'translations.js',
+    programMode: ['realtime', 'upload'],
+    runtime: 'runtime.js',
     library: 'lib',
     official: true,
     tags: ['communication'],

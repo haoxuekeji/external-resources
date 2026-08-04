@@ -26,6 +26,7 @@ function registerBlocks (Blockly) {
                         type: 'field_dropdown',
                         name: 'ADDR',
                         options: [
+                            [Blockly.Msg.ESPLCD1602_AUTO, 'None'],
                             ['0x27', '0x27'],
                             ['0x3F', '0x3F']
                         ]

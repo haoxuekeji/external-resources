@@ -11,7 +11,7 @@ function registerGenerators (Blockly) {
             `def _ob_http(method, url, data=None):\n` +
             `    global _http_status, _http_body\n` +
             `    try:\n` +
-            `        _r = requests.request(method, url, data=data)\n` +
+            `        _r = requests.request(method, url, data=data, timeout=5)\n` +
             `        _http_status = _r.status_code\n` +
             `        _http_body = _r.text\n` +
             `        _r.close()\n` +

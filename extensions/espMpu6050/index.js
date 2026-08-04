@@ -4,8 +4,9 @@ const espMpu6050 = formatMessage => ({
         default: 'MPU6050'
     }),
     extensionId: 'espMpu6050',
-    version: '1.0.0',
+    version: '1.1.0',
     supportDevice: ['microPythonEsp32', 'microPythonEsp8266'],
+    programMode: ['realtime', 'upload'],
     author: 'OpenBlock',
     iconURL: `assets/mpu6050.svg`,
     description: formatMessage({
@@ -15,6 +16,7 @@ const espMpu6050 = formatMessage => ({
     featured: true,
     blocks: 'blocks.js',
     generator: 'generator.js',
+    runtime: 'runtime.js',
     toolbox: 'toolbox.js',
     translations: 'translations.js',
     library: 'lib',

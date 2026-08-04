@@ -61,9 +61,7 @@ function registerGenerators (Blockly) {
         let code = `def on_mqtt_message():\n`;
 
         const nextBlock = block.nextConnection && block.nextConnection.targetBlock();
-        if (!nextBlock) {
-            code += `${Blockly.Python.INDENT}pass\n`;
-        } else {
+        if (nextBlock) {
             const variablesName = [];
             for (const x in Blockly.Python.variables_) {
                 variablesName.push(Blockly.Python.variables_[x].slice(0, Blockly.Python.variables_[x].indexOf('=') - 1));
@@ -72,6 +70,8 @@ function registerGenerators (Blockly) {
                 code += `${Blockly.Python.INDENT}global ${variablesName.join(', ')}\n`;
             }
             code = Blockly.Python.scrub_(block, code);
+        } else {
+            code += `${Blockly.Python.INDENT}pass\n`;
         }
 
         Blockly.Python.libraries_['def on_mqtt_message'] = code;

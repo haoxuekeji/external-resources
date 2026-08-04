@@ -4,8 +4,9 @@ const ultrasonic = formatMessage => ({
         default: 'Ultrasonic'
     }),
     extensionId: 'espUltrasonic',
-    version: '1.0.0',
+    version: '1.1.0',
     supportDevice: ['microPythonEsp32', 'microPythonEsp8266'],
+    programMode: ['realtime', 'upload'],
     author: 'ArthurZheng',
     iconURL: `assets/ultrasonic.png`,
     description: formatMessage({
@@ -15,6 +16,7 @@ const ultrasonic = formatMessage => ({
     featured: true,
     blocks: 'blocks.js',
     generator: 'generator.js',
+    runtime: 'runtime.js',
     toolbox: 'toolbox.js',
     translations: 'translations.js',
     library: 'lib',

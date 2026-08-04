@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="372" viewBox="0 0 600 372">
+  <rect width="600" height="372" fill="#4C97FF"/>
+  <rect x="210" y="60" width="180" height="212" rx="14" fill="#3B7DD8"/>
+  <rect x="222" y="72" width="156" height="188" rx="8" fill="#5AA9F0"/>
+  <g fill="#2A5FA8">
+    <rect x="242" y="92" width="28" height="28" rx="4"/>
+    <rect x="286" y="92" width="28" height="28" rx="4"/>
+    <rect x="330" y="92" width="28" height="28" rx="4"/>
+    <rect x="242" y="136" width="28" height="28" rx="4"/>
+    <rect x="286" y="136" width="28" height="28" rx="4"/>
+    <rect x="330" y="136" width="28" height="28" rx="4"/>
+    <rect x="242" y="180" width="28" height="28" rx="4"/>
+    <rect x="286" y="180" width="28" height="28" rx="4"/>
+    <rect x="330" y="180" width="28" height="28" rx="4"/>
+    <rect x="242" y="224" width="28" height="28" rx="4"/>
+    <rect x="286" y="224" width="28" height="28" rx="4"/>
+    <rect x="330" y="224" width="28" height="28" rx="4"/>
+  </g>
+  <g fill="#c0c4cc">
+    <rect x="244" y="272" width="12" height="48" rx="3"/>
+    <rect x="278" y="272" width="12" height="48" rx="3"/>
+    <rect x="312" y="272" width="12" height="48" rx="3"/>
+    <rect x="346" y="272" width="12" height="48" rx="3"/>
+  </g>
+  <text x="440" y="180" font-family="monospace" font-size="40" fill="#ffffff">DHT</text>
+</svg>

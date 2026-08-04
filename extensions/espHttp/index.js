@@ -4,7 +4,7 @@ const espHttp = formatMessage => ({
         default: 'HTTP Request'
     }),
     extensionId: 'espHttp',
-    version: '1.0.0',
+    version: '1.1.0',
     supportDevice: ['microPythonEsp32', 'microPythonEsp8266'],
     author: 'OpenBlock',
     iconURL: `assets/http.svg`,
@@ -17,6 +17,8 @@ const espHttp = formatMessage => ({
     generator: 'generator.js',
     toolbox: 'toolbox.js',
     translations: 'translations.js',
+    programMode: ['realtime', 'upload'],
+    runtime: 'runtime.js',
     library: 'lib',
     official: true,
     tags: ['communication'],

@@ -38,7 +38,8 @@ function registerBlocksMessages (Blockly) {
             "ESPLCD1602_CLEAR": "LCD clear screen",
             "ESPLCD1602_BACKLIGHT": "LCD backlight %1",
             "ESPLCD1602_ON": "on",
-            "ESPLCD1602_OFF": "off"
+            "ESPLCD1602_OFF": "off",
+            "ESPLCD1602_AUTO": "auto detect"
         }
     );
 
@@ -50,7 +51,8 @@ function registerBlocksMessages (Blockly) {
             "ESPLCD1602_CLEAR": "LCD очистить экран",
             "ESPLCD1602_BACKLIGHT": "LCD подсветка %1",
             "ESPLCD1602_ON": "вкл",
-            "ESPLCD1602_OFF": "выкл"
+            "ESPLCD1602_OFF": "выкл",
+            "ESPLCD1602_AUTO": "авто"
         }
     );
 
@@ -62,7 +64,8 @@ function registerBlocksMessages (Blockly) {
             "ESPLCD1602_CLEAR": "LCD 清屏",
             "ESPLCD1602_BACKLIGHT": "LCD 背光 %1",
             "ESPLCD1602_ON": "开",
-            "ESPLCD1602_OFF": "关"
+            "ESPLCD1602_OFF": "关",
+            "ESPLCD1602_AUTO": "自动检测"
         }
     );
 
@@ -74,7 +77,8 @@ function registerBlocksMessages (Blockly) {
             "ESPLCD1602_CLEAR": "LCD 清屏",
             "ESPLCD1602_BACKLIGHT": "LCD 背光 %1",
             "ESPLCD1602_ON": "開",
-            "ESPLCD1602_OFF": "關"
+            "ESPLCD1602_OFF": "關",
+            "ESPLCD1602_AUTO": "自動偵測"
         }
     );
 

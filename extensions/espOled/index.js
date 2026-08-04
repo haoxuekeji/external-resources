@@ -4,8 +4,9 @@ const espOled = formatMessage => ({
         default: 'OLED Display'
     }),
     extensionId: 'espOled',
-    version: '1.0.0',
+    version: '1.1.0',
     supportDevice: ['microPythonEsp32', 'microPythonEsp8266'],
+    programMode: ['realtime', 'upload'],
     author: 'OpenBlock',
     iconURL: `assets/oled.svg`,
     description: formatMessage({
@@ -15,6 +16,7 @@ const espOled = formatMessage => ({
     featured: true,
     blocks: 'blocks.js',
     generator: 'generator.js',
+    runtime: 'runtime.js',
     toolbox: 'toolbox.js',
     translations: 'translations.js',
     library: 'lib',

@@ -5,7 +5,14 @@ function registerBlocks (Blockly) {
     const color = '#CF63CF';
     const secondaryColour = '#BD42BD';
 
-    const digitalPins = Blockly.Device.getPinOptions('microPython_pin_esp32SetDigitalOutput');
+    const message = (key, fallback) => {
+        const value = Blockly.Msg && Blockly.Msg[key];
+        return typeof value === 'string' && value ? value : fallback;
+    };
+    const requestedPins = Blockly.Device && typeof Blockly.Device.getPinOptions === 'function' ?
+        Blockly.Device.getPinOptions('microPython_pin_esp32SetDigitalOutput') : null;
+    const digitalPins = Array.isArray(requestedPins) && requestedPins.length > 0 ?
+        requestedPins : [['4', '4'], ['21', '21'], ['22', '22']];
 
     const noteOptions = [
         ['C4 (262)', '262'],
@@ -28,7 +35,7 @@ function registerBlocks (Blockly) {
     Blockly.Blocks.espBuzzer_playNote = {
         init: function () {
             this.jsonInit({
-                message0: Blockly.Msg.ESPBUZZER_PLAYNOTE,
+                message0: message('ESPBUZZER_PLAYNOTE', 'buzzer pin %1 play note %2 for %3 seconds'),
                 args0: [
                     {
                         type: 'field_dropdown',
@@ -55,7 +62,7 @@ function registerBlocks (Blockly) {
     Blockly.Blocks.espBuzzer_playFreq = {
         init: function () {
             this.jsonInit({
-                message0: Blockly.Msg.ESPBUZZER_PLAYFREQ,
+                message0: message('ESPBUZZER_PLAYFREQ', 'buzzer pin %1 play frequency %2 Hz for %3 seconds'),
                 args0: [
                     {
                         type: 'field_dropdown',
@@ -81,7 +88,7 @@ function registerBlocks (Blockly) {
     Blockly.Blocks.espBuzzer_rest = {
         init: function () {
             this.jsonInit({
-                message0: Blockly.Msg.ESPBUZZER_REST,
+                message0: message('ESPBUZZER_REST', 'rest for %1 seconds'),
                 args0: [
                     {
                         type: 'input_value',
@@ -98,7 +105,7 @@ function registerBlocks (Blockly) {
     Blockly.Blocks.espBuzzer_stop = {
         init: function () {
             this.jsonInit({
-                message0: Blockly.Msg.ESPBUZZER_STOP,
+                message0: message('ESPBUZZER_STOP', 'stop buzzer pin %1'),
                 args0: [
                     {
                         type: 'field_dropdown',

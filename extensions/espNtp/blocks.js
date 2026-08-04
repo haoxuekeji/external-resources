@@ -4,11 +4,15 @@
 function registerBlocks (Blockly) {
     const color = '#FF8C1A';
     const secondaryColour = '#DB6E00';
+    const message = (key, fallback) => {
+        const value = Blockly.Msg[key];
+        return typeof value === 'string' && value ? value : fallback;
+    };
 
     Blockly.Blocks.espNtp_sync = {
         init: function () {
             this.jsonInit({
-                message0: Blockly.Msg.ESPNTP_SYNC,
+                message0: message('ESPNTP_SYNC', 'sync network time timezone %1'),
                 args0: [
                     {
                         type: 'input_value',
@@ -25,19 +29,19 @@ function registerBlocks (Blockly) {
     Blockly.Blocks.espNtp_get = {
         init: function () {
             this.jsonInit({
-                message0: Blockly.Msg.ESPNTP_GET,
+                message0: message('ESPNTP_GET', 'current %1'),
                 args0: [
                     {
                         type: 'field_dropdown',
                         name: 'FIELD',
                         options: [
-                            [Blockly.Msg.ESPNTP_YEAR, 'year'],
-                            [Blockly.Msg.ESPNTP_MONTH, 'month'],
-                            [Blockly.Msg.ESPNTP_DAY, 'day'],
-                            [Blockly.Msg.ESPNTP_HOUR, 'hour'],
-                            [Blockly.Msg.ESPNTP_MINUTE, 'minute'],
-                            [Blockly.Msg.ESPNTP_SECOND, 'second'],
-                            [Blockly.Msg.ESPNTP_WEEKDAY, 'weekday']
+                            [message('ESPNTP_YEAR', 'year'), 'year'],
+                            [message('ESPNTP_MONTH', 'month'), 'month'],
+                            [message('ESPNTP_DAY', 'day'), 'day'],
+                            [message('ESPNTP_HOUR', 'hour'), 'hour'],
+                            [message('ESPNTP_MINUTE', 'minute'), 'minute'],
+                            [message('ESPNTP_SECOND', 'second'), 'second'],
+                            [message('ESPNTP_WEEKDAY', 'weekday'), 'weekday']
                         ]
                     }
                 ],

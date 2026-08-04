@@ -4,11 +4,15 @@
 function registerBlocks (Blockly) {
     const color = '#660066';
     const secondaryColour = '#4D004D';
+    const message = (key, fallback) => {
+        const value = Blockly.Msg[key];
+        return typeof value === 'string' && value ? value : fallback;
+    };
 
     Blockly.Blocks.espMqtt_connect = {
         init: function () {
             this.jsonInit({
-                message0: Blockly.Msg.ESPMQTT_CONNECT,
+                message0: message('ESPMQTT_CONNECT', 'connect to MQTT broker %1 port %2'),
                 args0: [
                     {
                         type: 'input_value',
@@ -29,7 +33,7 @@ function registerBlocks (Blockly) {
     Blockly.Blocks.espMqtt_disconnect = {
         init: function () {
             this.jsonInit({
-                message0: Blockly.Msg.ESPMQTT_DISCONNECT,
+                message0: message('ESPMQTT_DISCONNECT', 'disconnect from MQTT broker'),
                 colour: color,
                 secondaryColour: secondaryColour,
                 extensions: ['shape_statement']
@@ -40,7 +44,7 @@ function registerBlocks (Blockly) {
     Blockly.Blocks.espMqtt_subscribe = {
         init: function () {
             this.jsonInit({
-                message0: Blockly.Msg.ESPMQTT_SUBSCRIBE,
+                message0: message('ESPMQTT_SUBSCRIBE', 'subscribe to topic %1'),
                 args0: [
                     {
                         type: 'input_value',
@@ -57,7 +61,7 @@ function registerBlocks (Blockly) {
     Blockly.Blocks.espMqtt_publish = {
         init: function () {
             this.jsonInit({
-                message0: Blockly.Msg.ESPMQTT_PUBLISH,
+                message0: message('ESPMQTT_PUBLISH', 'publish %2 to topic %1'),
                 args0: [
                     {
                         type: 'input_value',
@@ -78,7 +82,7 @@ function registerBlocks (Blockly) {
     Blockly.Blocks.espMqtt_checkMsg = {
         init: function () {
             this.jsonInit({
-                message0: Blockly.Msg.ESPMQTT_CHECKMSG,
+                message0: message('ESPMQTT_CHECKMSG', 'check MQTT messages'),
                 colour: color,
                 secondaryColour: secondaryColour,
                 extensions: ['shape_statement']
@@ -89,7 +93,7 @@ function registerBlocks (Blockly) {
     Blockly.Blocks.espMqtt_whenMessage = {
         init: function () {
             this.jsonInit({
-                message0: Blockly.Msg.ESPMQTT_WHENMESSAGE,
+                message0: message('ESPMQTT_WHENMESSAGE', 'when MQTT message received'),
                 nextStatement: null,
                 colour: color,
                 secondaryColour: secondaryColour,
@@ -101,7 +105,7 @@ function registerBlocks (Blockly) {
     Blockly.Blocks.espMqtt_topic = {
         init: function () {
             this.jsonInit({
-                message0: Blockly.Msg.ESPMQTT_TOPIC,
+                message0: message('ESPMQTT_TOPIC', 'MQTT topic'),
                 colour: color,
                 secondaryColour: secondaryColour,
                 extensions: ['output_string']
@@ -112,7 +116,7 @@ function registerBlocks (Blockly) {
     Blockly.Blocks.espMqtt_message = {
         init: function () {
             this.jsonInit({
-                message0: Blockly.Msg.ESPMQTT_MESSAGE,
+                message0: message('ESPMQTT_MESSAGE', 'MQTT message'),
                 colour: color,
                 secondaryColour: secondaryColour,
                 extensions: ['output_string']

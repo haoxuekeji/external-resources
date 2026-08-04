@@ -4,8 +4,9 @@ const espBuzzer = formatMessage => ({
         default: 'Buzzer Music'
     }),
     extensionId: 'espBuzzer',
-    version: '1.0.0',
+    version: '1.1.0',
     supportDevice: ['microPythonEsp32', 'microPythonEsp8266'],
+    programMode: ['realtime', 'upload'],
     author: 'OpenBlock',
     iconURL: `assets/buzzer.svg`,
     description: formatMessage({
@@ -15,6 +16,7 @@ const espBuzzer = formatMessage => ({
     featured: true,
     blocks: 'blocks.js',
     generator: 'generator.js',
+    runtime: 'runtime.js',
     toolbox: 'toolbox.js',
     translations: 'translations.js',
     official: true,

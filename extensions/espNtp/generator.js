@@ -33,7 +33,7 @@ function registerGenerators (Blockly) {
     Blockly.Python.espNtp_get = function (block) {
         ensureHelper();
         const field = block.getFieldValue('FIELD');
-        const index = FIELD_INDEX[field] === undefined ? 0 : FIELD_INDEX[field];
+        const index = typeof FIELD_INDEX[field] === 'undefined' ? 0 : FIELD_INDEX[field];
         if (field === 'weekday') {
             // localtime() weekday is 0-6 with Monday as 0, report 1-7 instead.
             return [`(time.localtime(time.time() + _ntp_tz * 3600)[6] + 1)`, Blockly.Python.ORDER_ATOMIC];

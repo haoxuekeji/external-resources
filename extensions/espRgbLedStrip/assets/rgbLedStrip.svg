@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="372" viewBox="0 0 600 372">
+  <rect width="600" height="372" fill="#7700FF"/>
+  <rect x="60" y="146" width="480" height="80" rx="16" fill="#2b2b3a"/>
+  <g>
+    <rect x="90" y="166" width="60" height="40" rx="6" fill="#ffffff"/>
+    <circle cx="120" cy="186" r="14" fill="#ff3b30"/>
+    <rect x="186" y="166" width="60" height="40" rx="6" fill="#ffffff"/>
+    <circle cx="216" cy="186" r="14" fill="#ff9500"/>
+    <rect x="282" y="166" width="60" height="40" rx="6" fill="#ffffff"/>
+    <circle cx="312" cy="186" r="14" fill="#34c759"/>
+    <rect x="378" y="166" width="60" height="40" rx="6" fill="#ffffff"/>
+    <circle cx="408" cy="186" r="14" fill="#007aff"/>
+    <rect x="474" y="166" width="36" height="40" rx="6" fill="#ffffff"/>
+    <circle cx="492" cy="186" r="12" fill="#af52de"/>
+  </g>
+  <g fill="#c8b3ff">
+    <rect x="160" y="152" width="6" height="68"/>
+    <rect x="256" y="152" width="6" height="68"/>
+    <rect x="352" y="152" width="6" height="68"/>
+    <rect x="448" y="152" width="6" height="68"/>
+  </g>
+</svg>

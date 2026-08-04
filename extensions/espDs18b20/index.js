@@ -4,8 +4,9 @@ const espDs18b20 = formatMessage => ({
         default: 'DS18B20'
     }),
     extensionId: 'espDs18b20',
-    version: '1.0.0',
+    version: '1.1.0',
     supportDevice: ['microPythonEsp32', 'microPythonEsp8266'],
+    programMode: ['realtime', 'upload'],
     author: 'OpenBlock',
     iconURL: `assets/ds18b20.svg`,
     description: formatMessage({
@@ -15,6 +16,7 @@ const espDs18b20 = formatMessage => ({
     featured: true,
     blocks: 'blocks.js',
     generator: 'generator.js',
+    runtime: 'runtime.js',
     toolbox: 'toolbox.js',
     translations: 'translations.js',
     official: true,
