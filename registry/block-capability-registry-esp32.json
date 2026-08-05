@@ -1,0 +1,2261 @@
+{
+  "schemaVersion": 1,
+  "registryId": "openblock-esp32-pilot",
+  "generator": "external-resources-v3/scripts/generate-block-registry.js",
+  "source": {
+    "repo": "external-resources-v3",
+    "commit": "a7cc8ca739562acc494ae4342df44b3fc135e029"
+  },
+  "extensionCount": 15,
+  "blockCount": 59,
+  "extensions": [
+    {
+      "extensionId": "espBuzzer",
+      "name": "Buzzer Music",
+      "version": "1.1.0",
+      "supportDevices": [
+        "microPythonEsp32",
+        "microPythonEsp8266"
+      ],
+      "programModes": [
+        "realtime",
+        "upload"
+      ],
+      "bundledLibrary": null,
+      "official": true,
+      "tags": [
+        "actuator"
+      ],
+      "blocks": [
+        {
+          "opcode": "espBuzzer_playFreq",
+          "shape": "statement",
+          "args": [
+            {
+              "name": "PIN",
+              "kind": "dropdown",
+              "dynamicOptions": "device_pins",
+              "allowedValues": null,
+              "default": "4",
+              "fallbackValues": [
+                "4",
+                "21",
+                "22"
+              ]
+            },
+            {
+              "name": "FREQ",
+              "kind": "input",
+              "check": null,
+              "default": null
+            },
+            {
+              "name": "DUR",
+              "kind": "input",
+              "check": null,
+              "default": null
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [
+              "from machine import Pin, PWM",
+              "import time"
+            ],
+            "libraries": [
+              "espBuzzer_helpers"
+            ],
+            "setups": [],
+            "variables": []
+          },
+          "safety": [
+            "actuator"
+          ]
+        },
+        {
+          "opcode": "espBuzzer_playNote",
+          "shape": "statement",
+          "args": [
+            {
+              "name": "PIN",
+              "kind": "dropdown",
+              "dynamicOptions": "device_pins",
+              "allowedValues": null,
+              "default": "4",
+              "fallbackValues": [
+                "4",
+                "21",
+                "22"
+              ]
+            },
+            {
+              "name": "NOTE",
+              "kind": "dropdown",
+              "dynamicOptions": null,
+              "allowedValues": [
+                "262",
+                "294",
+                "330",
+                "349",
+                "392",
+                "440",
+                "494",
+                "523",
+                "587",
+                "659",
+                "698",
+                "784",
+                "880",
+                "988",
+                "1047"
+              ],
+              "default": "262"
+            },
+            {
+              "name": "DUR",
+              "kind": "input",
+              "check": null,
+              "default": null
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [
+              "from machine import Pin, PWM",
+              "import time"
+            ],
+            "libraries": [
+              "espBuzzer_helpers"
+            ],
+            "setups": [],
+            "variables": []
+          },
+          "safety": [
+            "actuator"
+          ]
+        },
+        {
+          "opcode": "espBuzzer_rest",
+          "shape": "statement",
+          "args": [
+            {
+              "name": "DUR",
+              "kind": "input",
+              "check": null,
+              "default": null
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [
+              "import time"
+            ],
+            "libraries": [],
+            "setups": [],
+            "variables": []
+          },
+          "safety": [
+            "actuator"
+          ]
+        },
+        {
+          "opcode": "espBuzzer_stop",
+          "shape": "statement",
+          "args": [
+            {
+              "name": "PIN",
+              "kind": "dropdown",
+              "dynamicOptions": "device_pins",
+              "allowedValues": null,
+              "default": "4",
+              "fallbackValues": [
+                "4",
+                "21",
+                "22"
+              ]
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [
+              "from machine import Pin, PWM",
+              "import time"
+            ],
+            "libraries": [
+              "espBuzzer_helpers"
+            ],
+            "setups": [],
+            "variables": []
+          },
+          "safety": [
+            "actuator"
+          ]
+        }
+      ]
+    },
+    {
+      "extensionId": "espDht",
+      "name": "DHT",
+      "version": "1.0.0",
+      "supportDevices": [
+        "microPythonEsp32",
+        "microPythonEsp8266"
+      ],
+      "programModes": [
+        "realtime",
+        "upload"
+      ],
+      "bundledLibrary": null,
+      "official": true,
+      "tags": [
+        "sensor"
+      ],
+      "blocks": [
+        {
+          "opcode": "espDht_read",
+          "shape": "reporter_number",
+          "args": [
+            {
+              "name": "TYPE",
+              "kind": "dropdown",
+              "dynamicOptions": null,
+              "allowedValues": [
+                "11",
+                "22"
+              ],
+              "default": "11"
+            },
+            {
+              "name": "PIN",
+              "kind": "dropdown",
+              "dynamicOptions": "device_pins",
+              "allowedValues": null,
+              "default": "4",
+              "fallbackValues": [
+                "4",
+                "5",
+                "21",
+                "22"
+              ]
+            },
+            {
+              "name": "DATA",
+              "kind": "dropdown",
+              "dynamicOptions": null,
+              "allowedValues": [
+                "temperature",
+                "humidity"
+              ],
+              "default": "temperature"
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "expression",
+            "imports": [
+              "from machine import Pin",
+              "import dht",
+              "import time"
+            ],
+            "libraries": [
+              "espDht"
+            ],
+            "setups": [],
+            "variables": []
+          },
+          "safety": []
+        }
+      ]
+    },
+    {
+      "extensionId": "espDs18b20",
+      "name": "DS18B20",
+      "version": "1.1.0",
+      "supportDevices": [
+        "microPythonEsp32",
+        "microPythonEsp8266"
+      ],
+      "programModes": [
+        "realtime",
+        "upload"
+      ],
+      "bundledLibrary": null,
+      "official": true,
+      "tags": [
+        "sensor"
+      ],
+      "blocks": [
+        {
+          "opcode": "espDs18b20_read",
+          "shape": "reporter_number",
+          "args": [
+            {
+              "name": "PIN",
+              "kind": "dropdown",
+              "dynamicOptions": "device_pins",
+              "allowedValues": null,
+              "default": "4",
+              "fallbackValues": [
+                "4",
+                "5",
+                "21",
+                "22"
+              ]
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "expression",
+            "imports": [
+              "from machine import Pin",
+              "import onewire, ds18x20",
+              "import time"
+            ],
+            "libraries": [
+              "espDs18b20"
+            ],
+            "setups": [],
+            "variables": []
+          },
+          "safety": []
+        }
+      ]
+    },
+    {
+      "extensionId": "espHttp",
+      "name": "HTTP Request",
+      "version": "1.1.0",
+      "supportDevices": [
+        "microPythonEsp32",
+        "microPythonEsp8266"
+      ],
+      "programModes": [
+        "realtime",
+        "upload"
+      ],
+      "bundledLibrary": "lib",
+      "official": true,
+      "tags": [
+        "communication"
+      ],
+      "blocks": [
+        {
+          "opcode": "espHttp_get",
+          "shape": "statement",
+          "args": [
+            {
+              "name": "URL",
+              "kind": "input",
+              "check": null,
+              "default": null
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [
+              "import requests"
+            ],
+            "libraries": [
+              "espHttp"
+            ],
+            "setups": [],
+            "variables": [
+              "_http_body",
+              "_http_status"
+            ]
+          },
+          "safety": []
+        },
+        {
+          "opcode": "espHttp_post",
+          "shape": "statement",
+          "args": [
+            {
+              "name": "URL",
+              "kind": "input",
+              "check": null,
+              "default": null
+            },
+            {
+              "name": "DATA",
+              "kind": "input",
+              "check": null,
+              "default": null
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [
+              "import requests"
+            ],
+            "libraries": [
+              "espHttp"
+            ],
+            "setups": [],
+            "variables": [
+              "_http_body",
+              "_http_status"
+            ]
+          },
+          "safety": []
+        },
+        {
+          "opcode": "espHttp_response",
+          "shape": "reporter_string",
+          "args": [],
+          "pythonMapping": {
+            "available": true,
+            "kind": "expression",
+            "imports": [],
+            "libraries": [],
+            "setups": [],
+            "variables": []
+          },
+          "safety": []
+        },
+        {
+          "opcode": "espHttp_statusCode",
+          "shape": "reporter_number",
+          "args": [],
+          "pythonMapping": {
+            "available": true,
+            "kind": "expression",
+            "imports": [],
+            "libraries": [],
+            "setups": [],
+            "variables": []
+          },
+          "safety": []
+        }
+      ]
+    },
+    {
+      "extensionId": "espLcd1602",
+      "name": "LCD1602",
+      "version": "1.1.0",
+      "supportDevices": [
+        "microPythonEsp32",
+        "microPythonEsp8266"
+      ],
+      "programModes": [
+        "realtime",
+        "upload"
+      ],
+      "bundledLibrary": "lib",
+      "official": true,
+      "tags": [
+        "display"
+      ],
+      "blocks": [
+        {
+          "opcode": "espLcd1602_backlight",
+          "shape": "statement",
+          "args": [
+            {
+              "name": "STATE",
+              "kind": "dropdown",
+              "dynamicOptions": null,
+              "allowedValues": [
+                "True",
+                "False"
+              ],
+              "default": "True"
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [],
+            "libraries": [],
+            "setups": [],
+            "variables": []
+          },
+          "safety": []
+        },
+        {
+          "opcode": "espLcd1602_clear",
+          "shape": "statement",
+          "args": [],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [],
+            "libraries": [],
+            "setups": [],
+            "variables": []
+          },
+          "safety": []
+        },
+        {
+          "opcode": "espLcd1602_init",
+          "shape": "statement",
+          "args": [
+            {
+              "name": "SDA",
+              "kind": "dropdown",
+              "dynamicOptions": "device_pins",
+              "allowedValues": null,
+              "default": "21",
+              "fallbackValues": []
+            },
+            {
+              "name": "SCL",
+              "kind": "dropdown",
+              "dynamicOptions": "device_pins",
+              "allowedValues": null,
+              "default": "22",
+              "fallbackValues": []
+            },
+            {
+              "name": "ADDR",
+              "kind": "dropdown",
+              "dynamicOptions": null,
+              "allowedValues": [
+                "None",
+                "0x27",
+                "0x3F"
+              ],
+              "default": "None"
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [
+              "from machine import Pin, SoftI2C",
+              "import lcd1602"
+            ],
+            "libraries": [],
+            "setups": [
+              "espLcd1602"
+            ],
+            "variables": []
+          },
+          "safety": []
+        },
+        {
+          "opcode": "espLcd1602_showText",
+          "shape": "statement",
+          "args": [
+            {
+              "name": "ROW",
+              "kind": "dropdown",
+              "dynamicOptions": null,
+              "allowedValues": [
+                "0",
+                "1"
+              ],
+              "default": "0"
+            },
+            {
+              "name": "COL",
+              "kind": "input",
+              "check": null,
+              "default": null
+            },
+            {
+              "name": "TEXT",
+              "kind": "input",
+              "check": null,
+              "default": "Hello"
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [],
+            "libraries": [],
+            "setups": [],
+            "variables": []
+          },
+          "safety": []
+        }
+      ]
+    },
+    {
+      "extensionId": "espMotor",
+      "name": "DC Motor",
+      "version": "1.1.0",
+      "supportDevices": [
+        "microPythonEsp32",
+        "microPythonEsp8266"
+      ],
+      "programModes": [
+        "realtime",
+        "upload"
+      ],
+      "bundledLibrary": null,
+      "official": true,
+      "tags": [
+        "actuator"
+      ],
+      "blocks": [
+        {
+          "opcode": "espMotor_carMove",
+          "shape": "statement",
+          "args": [
+            {
+              "name": "ACTION",
+              "kind": "dropdown",
+              "dynamicOptions": null,
+              "allowedValues": [
+                "forward",
+                "backward",
+                "left",
+                "right"
+              ],
+              "default": "forward"
+            },
+            {
+              "name": "SPEED",
+              "kind": "input",
+              "check": null,
+              "default": null
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [
+              "from machine import Pin, PWM"
+            ],
+            "libraries": [
+              "espMotor_helpers"
+            ],
+            "setups": [],
+            "variables": []
+          },
+          "safety": [
+            "actuator"
+          ]
+        },
+        {
+          "opcode": "espMotor_carStop",
+          "shape": "statement",
+          "args": [],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [
+              "from machine import Pin, PWM"
+            ],
+            "libraries": [
+              "espMotor_helpers"
+            ],
+            "setups": [],
+            "variables": []
+          },
+          "safety": [
+            "actuator"
+          ]
+        },
+        {
+          "opcode": "espMotor_init",
+          "shape": "statement",
+          "args": [
+            {
+              "name": "MOTOR",
+              "kind": "dropdown",
+              "dynamicOptions": null,
+              "allowedValues": [
+                "A",
+                "B"
+              ],
+              "default": "A"
+            },
+            {
+              "name": "IN1",
+              "kind": "dropdown",
+              "dynamicOptions": "device_pins",
+              "allowedValues": null,
+              "default": "16",
+              "fallbackValues": [
+                "4",
+                "16",
+                "17",
+                "21",
+                "22"
+              ]
+            },
+            {
+              "name": "IN2",
+              "kind": "dropdown",
+              "dynamicOptions": "device_pins",
+              "allowedValues": null,
+              "default": "17",
+              "fallbackValues": [
+                "4",
+                "16",
+                "17",
+                "21",
+                "22"
+              ]
+            },
+            {
+              "name": "EN",
+              "kind": "dropdown",
+              "dynamicOptions": "device_pins",
+              "allowedValues": null,
+              "default": "4",
+              "fallbackValues": [
+                "4",
+                "16",
+                "17",
+                "21",
+                "22"
+              ]
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [
+              "from machine import Pin, PWM"
+            ],
+            "libraries": [
+              "espMotor_helpers"
+            ],
+            "setups": [
+              "espMotor_A"
+            ],
+            "variables": []
+          },
+          "safety": [
+            "actuator"
+          ]
+        },
+        {
+          "opcode": "espMotor_run",
+          "shape": "statement",
+          "args": [
+            {
+              "name": "MOTOR",
+              "kind": "dropdown",
+              "dynamicOptions": null,
+              "allowedValues": [
+                "A",
+                "B"
+              ],
+              "default": "A"
+            },
+            {
+              "name": "DIR",
+              "kind": "dropdown",
+              "dynamicOptions": null,
+              "allowedValues": [
+                "1",
+                "-1"
+              ],
+              "default": "1"
+            },
+            {
+              "name": "SPEED",
+              "kind": "input",
+              "check": null,
+              "default": null
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [
+              "from machine import Pin, PWM"
+            ],
+            "libraries": [
+              "espMotor_helpers"
+            ],
+            "setups": [],
+            "variables": []
+          },
+          "safety": [
+            "actuator"
+          ]
+        },
+        {
+          "opcode": "espMotor_stop",
+          "shape": "statement",
+          "args": [
+            {
+              "name": "MOTOR",
+              "kind": "dropdown",
+              "dynamicOptions": null,
+              "allowedValues": [
+                "A",
+                "B"
+              ],
+              "default": "A"
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [
+              "from machine import Pin, PWM"
+            ],
+            "libraries": [
+              "espMotor_helpers"
+            ],
+            "setups": [],
+            "variables": []
+          },
+          "safety": [
+            "actuator"
+          ]
+        }
+      ]
+    },
+    {
+      "extensionId": "espMpu6050",
+      "name": "MPU6050",
+      "version": "1.1.0",
+      "supportDevices": [
+        "microPythonEsp32",
+        "microPythonEsp8266"
+      ],
+      "programModes": [
+        "realtime",
+        "upload"
+      ],
+      "bundledLibrary": "lib",
+      "official": true,
+      "tags": [
+        "sensor"
+      ],
+      "blocks": [
+        {
+          "opcode": "espMpu6050_accel",
+          "shape": "reporter_number",
+          "args": [
+            {
+              "name": "AXIS",
+              "kind": "dropdown",
+              "dynamicOptions": null,
+              "allowedValues": [
+                "0",
+                "1",
+                "2"
+              ],
+              "default": "0"
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "expression",
+            "imports": [],
+            "libraries": [],
+            "setups": [],
+            "variables": []
+          },
+          "safety": []
+        },
+        {
+          "opcode": "espMpu6050_gyro",
+          "shape": "reporter_number",
+          "args": [
+            {
+              "name": "AXIS",
+              "kind": "dropdown",
+              "dynamicOptions": null,
+              "allowedValues": [
+                "0",
+                "1",
+                "2"
+              ],
+              "default": "0"
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "expression",
+            "imports": [],
+            "libraries": [],
+            "setups": [],
+            "variables": []
+          },
+          "safety": []
+        },
+        {
+          "opcode": "espMpu6050_init",
+          "shape": "statement",
+          "args": [
+            {
+              "name": "SDA",
+              "kind": "dropdown",
+              "dynamicOptions": "device_pins",
+              "allowedValues": null,
+              "default": "21",
+              "fallbackValues": [
+                "21",
+                "22",
+                "4",
+                "5"
+              ]
+            },
+            {
+              "name": "SCL",
+              "kind": "dropdown",
+              "dynamicOptions": "device_pins",
+              "allowedValues": null,
+              "default": "22",
+              "fallbackValues": [
+                "21",
+                "22",
+                "4",
+                "5"
+              ]
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [
+              "from machine import Pin, SoftI2C",
+              "import mpu6050"
+            ],
+            "libraries": [],
+            "setups": [
+              "espMpu6050"
+            ],
+            "variables": []
+          },
+          "safety": []
+        },
+        {
+          "opcode": "espMpu6050_temperature",
+          "shape": "reporter_number",
+          "args": [],
+          "pythonMapping": {
+            "available": true,
+            "kind": "expression",
+            "imports": [],
+            "libraries": [],
+            "setups": [],
+            "variables": []
+          },
+          "safety": []
+        }
+      ]
+    },
+    {
+      "extensionId": "espMqtt",
+      "name": "MQTT",
+      "version": "1.2.0",
+      "supportDevices": [
+        "microPythonEsp32",
+        "microPythonEsp8266"
+      ],
+      "programModes": [
+        "realtime",
+        "upload"
+      ],
+      "bundledLibrary": "lib",
+      "official": true,
+      "tags": [
+        "communication"
+      ],
+      "blocks": [
+        {
+          "opcode": "espMqtt_checkMsg",
+          "shape": "statement",
+          "args": [],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [],
+            "libraries": [],
+            "setups": [],
+            "variables": []
+          },
+          "safety": []
+        },
+        {
+          "opcode": "espMqtt_connect",
+          "shape": "statement",
+          "args": [
+            {
+              "name": "HOST",
+              "kind": "input",
+              "check": null,
+              "default": null
+            },
+            {
+              "name": "PORT",
+              "kind": "input",
+              "check": null,
+              "default": null
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [
+              "from umqtt_simple import MQTTClient",
+              "import machine",
+              "import ubinascii"
+            ],
+            "libraries": [
+              "espMqtt_cb"
+            ],
+            "setups": [],
+            "variables": [
+              "_mqtt_msg",
+              "_mqtt_topic"
+            ]
+          },
+          "safety": [
+            "network"
+          ]
+        },
+        {
+          "opcode": "espMqtt_disconnect",
+          "shape": "statement",
+          "args": [],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [],
+            "libraries": [],
+            "setups": [],
+            "variables": []
+          },
+          "safety": []
+        },
+        {
+          "opcode": "espMqtt_message",
+          "shape": "reporter_string",
+          "args": [],
+          "pythonMapping": {
+            "available": true,
+            "kind": "expression",
+            "imports": [],
+            "libraries": [],
+            "setups": [],
+            "variables": []
+          },
+          "safety": []
+        },
+        {
+          "opcode": "espMqtt_publish",
+          "shape": "statement",
+          "args": [
+            {
+              "name": "TOPIC",
+              "kind": "input",
+              "check": null,
+              "default": null
+            },
+            {
+              "name": "MSG",
+              "kind": "input",
+              "check": null,
+              "default": null
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [],
+            "libraries": [],
+            "setups": [],
+            "variables": []
+          },
+          "safety": []
+        },
+        {
+          "opcode": "espMqtt_subscribe",
+          "shape": "statement",
+          "args": [
+            {
+              "name": "TOPIC",
+              "kind": "input",
+              "check": null,
+              "default": null
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [],
+            "libraries": [],
+            "setups": [],
+            "variables": []
+          },
+          "safety": []
+        },
+        {
+          "opcode": "espMqtt_topic",
+          "shape": "reporter_string",
+          "args": [],
+          "pythonMapping": {
+            "available": true,
+            "kind": "expression",
+            "imports": [],
+            "libraries": [],
+            "setups": [],
+            "variables": []
+          },
+          "safety": []
+        },
+        {
+          "opcode": "espMqtt_whenMessage",
+          "shape": "hat",
+          "args": [],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [
+              "from umqtt_simple import MQTTClient",
+              "import machine",
+              "import ubinascii"
+            ],
+            "libraries": [
+              "def on_mqtt_message",
+              "espMqtt_cb"
+            ],
+            "setups": [],
+            "variables": [
+              "_mqtt_msg",
+              "_mqtt_topic"
+            ]
+          },
+          "safety": [
+            "network"
+          ]
+        }
+      ]
+    },
+    {
+      "extensionId": "espNtp",
+      "name": "Network Time",
+      "version": "1.1.0",
+      "supportDevices": [
+        "microPythonEsp32",
+        "microPythonEsp8266"
+      ],
+      "programModes": [
+        "realtime",
+        "upload"
+      ],
+      "bundledLibrary": "lib",
+      "official": true,
+      "tags": [
+        "communication"
+      ],
+      "blocks": [
+        {
+          "opcode": "espNtp_get",
+          "shape": "reporter_number",
+          "args": [
+            {
+              "name": "FIELD",
+              "kind": "dropdown",
+              "dynamicOptions": null,
+              "allowedValues": [
+                "year",
+                "month",
+                "day",
+                "hour",
+                "minute",
+                "second",
+                "weekday"
+              ],
+              "default": "year"
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "expression",
+            "imports": [
+              "import ntptime",
+              "import time"
+            ],
+            "libraries": [],
+            "setups": [],
+            "variables": [
+              "_ntp_tz"
+            ]
+          },
+          "safety": [
+            "network"
+          ]
+        },
+        {
+          "opcode": "espNtp_sync",
+          "shape": "statement",
+          "args": [
+            {
+              "name": "TZ",
+              "kind": "input",
+              "check": null,
+              "default": null
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [
+              "import ntptime",
+              "import time"
+            ],
+            "libraries": [],
+            "setups": [],
+            "variables": [
+              "_ntp_tz"
+            ]
+          },
+          "safety": [
+            "network"
+          ]
+        }
+      ]
+    },
+    {
+      "extensionId": "espOled",
+      "name": "OLED Display",
+      "version": "1.1.0",
+      "supportDevices": [
+        "microPythonEsp32",
+        "microPythonEsp8266"
+      ],
+      "programModes": [
+        "realtime",
+        "upload"
+      ],
+      "bundledLibrary": "lib",
+      "official": true,
+      "tags": [
+        "display"
+      ],
+      "blocks": [
+        {
+          "opcode": "espOled_clear",
+          "shape": "statement",
+          "args": [],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [],
+            "libraries": [],
+            "setups": [],
+            "variables": []
+          },
+          "safety": []
+        },
+        {
+          "opcode": "espOled_init",
+          "shape": "statement",
+          "args": [
+            {
+              "name": "SDA",
+              "kind": "dropdown",
+              "dynamicOptions": "device_pins",
+              "allowedValues": null,
+              "default": "21",
+              "fallbackValues": [
+                "21",
+                "22",
+                "4",
+                "5"
+              ]
+            },
+            {
+              "name": "SCL",
+              "kind": "dropdown",
+              "dynamicOptions": "device_pins",
+              "allowedValues": null,
+              "default": "22",
+              "fallbackValues": [
+                "21",
+                "22",
+                "4",
+                "5"
+              ]
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [
+              "from machine import Pin, SoftI2C",
+              "import ssd1306"
+            ],
+            "libraries": [],
+            "setups": [],
+            "variables": []
+          },
+          "safety": []
+        },
+        {
+          "opcode": "espOled_line",
+          "shape": "statement",
+          "args": [
+            {
+              "name": "X1",
+              "kind": "input",
+              "check": null,
+              "default": null
+            },
+            {
+              "name": "Y1",
+              "kind": "input",
+              "check": null,
+              "default": null
+            },
+            {
+              "name": "X2",
+              "kind": "input",
+              "check": null,
+              "default": null
+            },
+            {
+              "name": "Y2",
+              "kind": "input",
+              "check": null,
+              "default": null
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [],
+            "libraries": [],
+            "setups": [],
+            "variables": []
+          },
+          "safety": []
+        },
+        {
+          "opcode": "espOled_pixel",
+          "shape": "statement",
+          "args": [
+            {
+              "name": "X",
+              "kind": "input",
+              "check": null,
+              "default": null
+            },
+            {
+              "name": "Y",
+              "kind": "input",
+              "check": null,
+              "default": null
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [],
+            "libraries": [],
+            "setups": [],
+            "variables": []
+          },
+          "safety": []
+        },
+        {
+          "opcode": "espOled_show",
+          "shape": "statement",
+          "args": [],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [],
+            "libraries": [],
+            "setups": [],
+            "variables": []
+          },
+          "safety": []
+        },
+        {
+          "opcode": "espOled_text",
+          "shape": "statement",
+          "args": [
+            {
+              "name": "TEXT",
+              "kind": "input",
+              "check": null,
+              "default": "hello"
+            },
+            {
+              "name": "X",
+              "kind": "input",
+              "check": null,
+              "default": null
+            },
+            {
+              "name": "Y",
+              "kind": "input",
+              "check": null,
+              "default": null
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [],
+            "libraries": [],
+            "setups": [],
+            "variables": []
+          },
+          "safety": []
+        }
+      ]
+    },
+    {
+      "extensionId": "espRgbLedStrip",
+      "name": "RGB LED Strip",
+      "version": "1.0.0",
+      "supportDevices": [
+        "microPythonEsp32",
+        "microPythonEsp8266"
+      ],
+      "programModes": [
+        "realtime",
+        "upload"
+      ],
+      "bundledLibrary": null,
+      "official": true,
+      "tags": [
+        "display"
+      ],
+      "blocks": [
+        {
+          "opcode": "espRgbLedStrip_clear",
+          "shape": "statement",
+          "args": [
+            {
+              "name": "PIN",
+              "kind": "dropdown",
+              "dynamicOptions": "device_pins",
+              "allowedValues": null,
+              "default": "4",
+              "fallbackValues": [
+                "4",
+                "5",
+                "21",
+                "22"
+              ]
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [
+              "from machine import Pin",
+              "import neopixel"
+            ],
+            "libraries": [
+              "espRgbLedStrip"
+            ],
+            "setups": [],
+            "variables": []
+          },
+          "safety": []
+        },
+        {
+          "opcode": "espRgbLedStrip_fill",
+          "shape": "statement",
+          "args": [
+            {
+              "name": "PIN",
+              "kind": "dropdown",
+              "dynamicOptions": "device_pins",
+              "allowedValues": null,
+              "default": "4",
+              "fallbackValues": [
+                "4",
+                "5",
+                "21",
+                "22"
+              ]
+            },
+            {
+              "name": "COLOR",
+              "kind": "input",
+              "check": null,
+              "default": null
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [
+              "from machine import Pin",
+              "import neopixel"
+            ],
+            "libraries": [
+              "espRgbLedStrip"
+            ],
+            "setups": [],
+            "variables": []
+          },
+          "safety": []
+        },
+        {
+          "opcode": "espRgbLedStrip_init",
+          "shape": "statement",
+          "args": [
+            {
+              "name": "PIN",
+              "kind": "dropdown",
+              "dynamicOptions": "device_pins",
+              "allowedValues": null,
+              "default": "4",
+              "fallbackValues": [
+                "4",
+                "5",
+                "21",
+                "22"
+              ]
+            },
+            {
+              "name": "LEN",
+              "kind": "input",
+              "check": null,
+              "default": null
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [
+              "from machine import Pin",
+              "import neopixel"
+            ],
+            "libraries": [
+              "espRgbLedStrip"
+            ],
+            "setups": [],
+            "variables": []
+          },
+          "safety": []
+        },
+        {
+          "opcode": "espRgbLedStrip_setBrightness",
+          "shape": "statement",
+          "args": [
+            {
+              "name": "PIN",
+              "kind": "dropdown",
+              "dynamicOptions": "device_pins",
+              "allowedValues": null,
+              "default": "4",
+              "fallbackValues": [
+                "4",
+                "5",
+                "21",
+                "22"
+              ]
+            },
+            {
+              "name": "BRT",
+              "kind": "input",
+              "check": null,
+              "default": null
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [
+              "from machine import Pin",
+              "import neopixel"
+            ],
+            "libraries": [
+              "espRgbLedStrip"
+            ],
+            "setups": [],
+            "variables": []
+          },
+          "safety": []
+        },
+        {
+          "opcode": "espRgbLedStrip_setPixelColor",
+          "shape": "statement",
+          "args": [
+            {
+              "name": "PIN",
+              "kind": "dropdown",
+              "dynamicOptions": "device_pins",
+              "allowedValues": null,
+              "default": "4",
+              "fallbackValues": [
+                "4",
+                "5",
+                "21",
+                "22"
+              ]
+            },
+            {
+              "name": "NO",
+              "kind": "input",
+              "check": null,
+              "default": null
+            },
+            {
+              "name": "COLOR",
+              "kind": "input",
+              "check": null,
+              "default": null
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [
+              "from machine import Pin",
+              "import neopixel"
+            ],
+            "libraries": [
+              "espRgbLedStrip"
+            ],
+            "setups": [],
+            "variables": []
+          },
+          "safety": []
+        }
+      ]
+    },
+    {
+      "extensionId": "espSdCard",
+      "name": "SD Card",
+      "version": "1.1.0",
+      "supportDevices": [
+        "microPythonEsp32",
+        "microPythonEsp8266"
+      ],
+      "programModes": [
+        "realtime",
+        "upload"
+      ],
+      "bundledLibrary": "lib",
+      "official": true,
+      "tags": [
+        "actuator"
+      ],
+      "blocks": [
+        {
+          "opcode": "espSdCard_appendLine",
+          "shape": "statement",
+          "args": [
+            {
+              "name": "FILE",
+              "kind": "input",
+              "check": null,
+              "default": null
+            },
+            {
+              "name": "DATA",
+              "kind": "input",
+              "check": null,
+              "default": null
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [
+              "from machine import Pin, SPI",
+              "import sdcard, uos"
+            ],
+            "libraries": [
+              "espSdCard_helpers"
+            ],
+            "setups": [],
+            "variables": []
+          },
+          "safety": [
+            "actuator",
+            "filesystem"
+          ]
+        },
+        {
+          "opcode": "espSdCard_deleteFile",
+          "shape": "statement",
+          "args": [
+            {
+              "name": "FILE",
+              "kind": "input",
+              "check": null,
+              "default": null
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [
+              "from machine import Pin, SPI",
+              "import sdcard, uos"
+            ],
+            "libraries": [
+              "espSdCard_helpers"
+            ],
+            "setups": [],
+            "variables": []
+          },
+          "safety": [
+            "actuator",
+            "filesystem"
+          ]
+        },
+        {
+          "opcode": "espSdCard_mount",
+          "shape": "statement",
+          "args": [
+            {
+              "name": "SCK",
+              "kind": "dropdown",
+              "dynamicOptions": "device_pins",
+              "allowedValues": null,
+              "default": "18",
+              "fallbackValues": [
+                "18",
+                "23",
+                "19",
+                "5",
+                "21",
+                "22"
+              ]
+            },
+            {
+              "name": "MOSI",
+              "kind": "dropdown",
+              "dynamicOptions": "device_pins",
+              "allowedValues": null,
+              "default": "23",
+              "fallbackValues": [
+                "18",
+                "23",
+                "19",
+                "5",
+                "21",
+                "22"
+              ]
+            },
+            {
+              "name": "MISO",
+              "kind": "dropdown",
+              "dynamicOptions": "device_pins",
+              "allowedValues": null,
+              "default": "19",
+              "fallbackValues": [
+                "18",
+                "23",
+                "19",
+                "5",
+                "21",
+                "22"
+              ]
+            },
+            {
+              "name": "CS",
+              "kind": "dropdown",
+              "dynamicOptions": "device_pins",
+              "allowedValues": null,
+              "default": "5",
+              "fallbackValues": [
+                "18",
+                "23",
+                "19",
+                "5",
+                "21",
+                "22"
+              ]
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [
+              "from machine import Pin, SPI",
+              "import sdcard, uos"
+            ],
+            "libraries": [
+              "espSdCard_helpers"
+            ],
+            "setups": [],
+            "variables": []
+          },
+          "safety": [
+            "actuator",
+            "filesystem"
+          ]
+        },
+        {
+          "opcode": "espSdCard_readFile",
+          "shape": "reporter_string",
+          "args": [
+            {
+              "name": "FILE",
+              "kind": "input",
+              "check": null,
+              "default": null
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "expression",
+            "imports": [
+              "from machine import Pin, SPI",
+              "import sdcard, uos"
+            ],
+            "libraries": [
+              "espSdCard_helpers"
+            ],
+            "setups": [],
+            "variables": []
+          },
+          "safety": [
+            "actuator",
+            "filesystem"
+          ]
+        }
+      ]
+    },
+    {
+      "extensionId": "espServo",
+      "name": "Servo",
+      "version": "1.1.0",
+      "supportDevices": [
+        "microPythonEsp32",
+        "microPythonEsp8266"
+      ],
+      "programModes": [
+        "realtime",
+        "upload"
+      ],
+      "bundledLibrary": null,
+      "official": true,
+      "tags": [
+        "actuators"
+      ],
+      "blocks": [
+        {
+          "opcode": "espServo_release",
+          "shape": "statement",
+          "args": [
+            {
+              "name": "PIN",
+              "kind": "dropdown",
+              "dynamicOptions": "device_pins",
+              "allowedValues": null,
+              "default": "4",
+              "fallbackValues": [
+                "4",
+                "21",
+                "22"
+              ]
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [
+              "from machine import Pin, PWM"
+            ],
+            "libraries": [
+              "espServo"
+            ],
+            "setups": [],
+            "variables": []
+          },
+          "safety": [
+            "actuator"
+          ]
+        },
+        {
+          "opcode": "espServo_setAngle",
+          "shape": "statement",
+          "args": [
+            {
+              "name": "PIN",
+              "kind": "dropdown",
+              "dynamicOptions": "device_pins",
+              "allowedValues": null,
+              "default": "4",
+              "fallbackValues": [
+                "4",
+                "21",
+                "22"
+              ]
+            },
+            {
+              "name": "ANGLE",
+              "kind": "input",
+              "check": null,
+              "default": null
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [
+              "from machine import Pin, PWM"
+            ],
+            "libraries": [
+              "espServo"
+            ],
+            "setups": [],
+            "variables": []
+          },
+          "safety": [
+            "actuator"
+          ]
+        }
+      ]
+    },
+    {
+      "extensionId": "espTm1650",
+      "name": "TM1650 4-digit display",
+      "version": "1.0.1",
+      "supportDevices": [
+        "microPythonEsp32"
+      ],
+      "programModes": [
+        "realtime",
+        "upload"
+      ],
+      "bundledLibrary": "lib",
+      "official": true,
+      "tags": [
+        "display"
+      ],
+      "blocks": [
+        {
+          "opcode": "espTm1650_clear",
+          "shape": "statement",
+          "args": [],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [],
+            "libraries": [],
+            "setups": [],
+            "variables": []
+          },
+          "safety": []
+        },
+        {
+          "opcode": "espTm1650_init",
+          "shape": "statement",
+          "args": [
+            {
+              "name": "SDA",
+              "kind": "dropdown",
+              "dynamicOptions": "device_pins",
+              "allowedValues": null,
+              "default": "21",
+              "fallbackValues": [
+                "21",
+                "22",
+                "18",
+                "19",
+                "4",
+                "5",
+                "8",
+                "9"
+              ]
+            },
+            {
+              "name": "SCL",
+              "kind": "dropdown",
+              "dynamicOptions": "device_pins",
+              "allowedValues": null,
+              "default": "22",
+              "fallbackValues": [
+                "21",
+                "22",
+                "18",
+                "19",
+                "4",
+                "5",
+                "8",
+                "9"
+              ]
+            },
+            {
+              "name": "BRIGHTNESS",
+              "kind": "dropdown",
+              "dynamicOptions": null,
+              "allowedValues": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8"
+              ],
+              "default": "4"
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [
+              "from machine import Pin, SoftI2C",
+              "import tm1650"
+            ],
+            "libraries": [],
+            "setups": [
+              "espTm1650"
+            ],
+            "variables": []
+          },
+          "safety": []
+        },
+        {
+          "opcode": "espTm1650_setBrightness",
+          "shape": "statement",
+          "args": [
+            {
+              "name": "BRIGHTNESS",
+              "kind": "input",
+              "check": null,
+              "default": null
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [],
+            "libraries": [],
+            "setups": [],
+            "variables": []
+          },
+          "safety": []
+        },
+        {
+          "opcode": "espTm1650_setDecimal",
+          "shape": "statement",
+          "args": [
+            {
+              "name": "POSITION",
+              "kind": "dropdown",
+              "dynamicOptions": null,
+              "allowedValues": [
+                "1",
+                "2",
+                "3",
+                "4"
+              ],
+              "default": "2"
+            },
+            {
+              "name": "STATE",
+              "kind": "dropdown",
+              "dynamicOptions": null,
+              "allowedValues": [
+                "True",
+                "False"
+              ],
+              "default": "True"
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [],
+            "libraries": [],
+            "setups": [],
+            "variables": []
+          },
+          "safety": []
+        },
+        {
+          "opcode": "espTm1650_setDisplay",
+          "shape": "statement",
+          "args": [
+            {
+              "name": "STATE",
+              "kind": "dropdown",
+              "dynamicOptions": null,
+              "allowedValues": [
+                "True",
+                "False"
+              ],
+              "default": "True"
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [],
+            "libraries": [],
+            "setups": [],
+            "variables": []
+          },
+          "safety": []
+        },
+        {
+          "opcode": "espTm1650_showAt",
+          "shape": "statement",
+          "args": [
+            {
+              "name": "CHAR",
+              "kind": "input",
+              "check": null,
+              "default": null
+            },
+            {
+              "name": "POSITION",
+              "kind": "dropdown",
+              "dynamicOptions": null,
+              "allowedValues": [
+                "1",
+                "2",
+                "3",
+                "4"
+              ],
+              "default": "1"
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [],
+            "libraries": [],
+            "setups": [],
+            "variables": []
+          },
+          "safety": []
+        },
+        {
+          "opcode": "espTm1650_showNumber",
+          "shape": "statement",
+          "args": [
+            {
+              "name": "NUMBER",
+              "kind": "input",
+              "check": null,
+              "default": null
+            },
+            {
+              "name": "DECIMALS",
+              "kind": "dropdown",
+              "dynamicOptions": null,
+              "allowedValues": [
+                "0",
+                "1",
+                "2",
+                "3"
+              ],
+              "default": "0"
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [],
+            "libraries": [],
+            "setups": [],
+            "variables": []
+          },
+          "safety": []
+        },
+        {
+          "opcode": "espTm1650_showText",
+          "shape": "statement",
+          "args": [
+            {
+              "name": "TEXT",
+              "kind": "input",
+              "check": null,
+              "default": "AbCd"
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [],
+            "libraries": [],
+            "setups": [],
+            "variables": []
+          },
+          "safety": []
+        }
+      ]
+    },
+    {
+      "extensionId": "espUltrasonic",
+      "name": "Ultrasonic",
+      "version": "1.1.0",
+      "supportDevices": [
+        "microPythonEsp32",
+        "microPythonEsp8266"
+      ],
+      "programModes": [
+        "realtime",
+        "upload"
+      ],
+      "bundledLibrary": "lib",
+      "official": true,
+      "tags": [
+        "sensor"
+      ],
+      "blocks": [
+        {
+          "opcode": "ultrasonic_readDistance",
+          "shape": "reporter_number",
+          "args": [
+            {
+              "name": "TRIG",
+              "kind": "dropdown",
+              "dynamicOptions": "device_pins",
+              "allowedValues": null,
+              "default": "5",
+              "fallbackValues": [
+                "5",
+                "18",
+                "21",
+                "22"
+              ]
+            },
+            {
+              "name": "ECHO",
+              "kind": "dropdown",
+              "dynamicOptions": "device_pins",
+              "allowedValues": null,
+              "default": "18",
+              "fallbackValues": [
+                "5",
+                "18",
+                "21",
+                "22"
+              ]
+            },
+            {
+              "name": "UNIT",
+              "kind": "dropdown",
+              "dynamicOptions": null,
+              "allowedValues": [
+                "CM",
+                "MM"
+              ],
+              "default": "CM"
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "expression",
+            "imports": [
+              "from hcsr04_v0_2_1 import HCSR04"
+            ],
+            "libraries": [],
+            "setups": [],
+            "variables": [
+              "ultrasonic_5_5"
+            ]
+          },
+          "safety": []
+        }
+      ]
+    }
+  ]
+}

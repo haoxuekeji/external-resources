@@ -1,0 +1,86 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://openblock.cc/schemas/block-capability-registry-v1.json",
+  "title": "OpenBlock 积木能力注册表 v1",
+  "description": "AI-032：从扩展元数据机器生成的积木能力注册表。供 AI 服务做设备/扩展能力子集检索与受控 AST 校验。生成器：external-resources-v3/scripts/generate-block-registry.js（禁止手工编辑产物）。",
+  "type": "object",
+  "required": ["schemaVersion", "registryId", "generator", "source", "extensionCount", "blockCount", "extensions"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "registryId": {"type": "string", "minLength": 1},
+    "generator": {"type": "string"},
+    "source": {
+      "type": "object",
+      "required": ["repo", "commit"],
+      "properties": {
+        "repo": {"type": "string"},
+        "commit": {"type": ["string", "null"], "pattern": "^[0-9a-f]{40}$"}
+      }
+    },
+    "extensionCount": {"type": "integer", "minimum": 0},
+    "blockCount": {"type": "integer", "minimum": 0},
+    "extensions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["extensionId", "version", "supportDevices", "programModes", "blocks"],
+        "additionalProperties": false,
+        "properties": {
+          "extensionId": {"type": "string", "minLength": 1},
+          "name": {"type": "string"},
+          "version": {"type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+"},
+          "supportDevices": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+          "programModes": {"type": "array", "items": {"enum": ["realtime", "upload"]}},
+          "bundledLibrary": {"type": ["string", "null"]},
+          "official": {"type": "boolean"},
+          "tags": {"type": "array", "items": {"type": "string"}},
+          "blocks": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["opcode", "shape", "args", "pythonMapping", "safety"],
+              "additionalProperties": false,
+              "properties": {
+                "opcode": {"type": "string", "minLength": 1},
+                "shape": {"enum": ["hat", "statement", "reporter_number", "reporter_string", "boolean"]},
+                "args": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": ["name", "kind"],
+                    "additionalProperties": false,
+                    "properties": {
+                      "name": {"type": "string", "minLength": 1},
+                      "kind": {"enum": ["dropdown", "input", "text_field"]},
+                      "allowedValues": {"type": ["array", "null"], "items": {"type": "string"}},
+                      "dynamicOptions": {"enum": ["device_pins", null]},
+                      "fallbackValues": {"type": "array", "items": {"type": "string"}},
+                      "check": {"type": ["string", "array", "null"]},
+                      "default": {"type": ["string", "null"]}
+                    }
+                  }
+                },
+                "pythonMapping": {
+                  "type": "object",
+                  "required": ["available"],
+                  "additionalProperties": false,
+                  "properties": {
+                    "available": {"type": "boolean"},
+                    "kind": {"enum": ["expression", "statement", null]},
+                    "imports": {"type": "array", "items": {"type": "string"}},
+                    "libraries": {"type": "array", "items": {"type": "string"}},
+                    "setups": {"type": "array", "items": {"type": "string"}},
+                    "variables": {"type": "array", "items": {"type": "string"}},
+                    "error": {"type": "string"}
+                  }
+                },
+                "safety": {"type": "array", "items": {"enum": ["network", "filesystem", "actuator"]}}
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
