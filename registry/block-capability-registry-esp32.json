@@ -4,7 +4,7 @@
   "generator": "external-resources-v3/scripts/generate-block-registry.js",
   "source": {
     "repo": "external-resources-v3",
-    "commit": "a7cc8ca739562acc494ae4342df44b3fc135e029"
+    "commit": "c62b0ca75f8b0815eaedcd6ab578681d694efda6"
   },
   "extensionCount": 15,
   "blockCount": 59,
@@ -1912,7 +1912,7 @@
     {
       "extensionId": "espTm1650",
       "name": "TM1650 4-digit display",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "supportDevices": [
         "microPythonEsp32"
       ],

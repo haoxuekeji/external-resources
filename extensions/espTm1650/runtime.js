@@ -138,6 +138,10 @@ const pythonBoolean = value => {
     return enabled ? 'True' : 'False';
 };
 
+// Receiving and compiling the ~4.6KB driver class plus the I2C bus scan
+// take longer than the default live command timeout.
+const INIT_TIMEOUT = 10000;
+
 function registerDeviceExtensionRuntime (runtime) {
     const getPeripheral = () => {
         const device = runtime.getDevice && runtime.getDevice();
@@ -145,12 +149,32 @@ function registerDeviceExtensionRuntime (runtime) {
         return runtime.peripheralExtensions[device.deviceId] || null;
     };
 
-    const execLive = code => {
+    const execLive = (code, timeout) => {
         const peripheral = getPeripheral();
         if (!peripheral || typeof peripheral.execLive !== 'function') {
             return Promise.reject(new Error('The current connection does not support MicroPython realtime mode'));
         }
-        return peripheral.execLive(code);
+        return peripheral.execLive(code, timeout);
+    };
+
+    // Send the driver class only once per live session, it is by far the
+    // largest command of this extension.
+    const ensureClass = () => {
+        const peripheral = getPeripheral();
+        if (!peripheral || typeof peripheral.execLive !== 'function') {
+            return Promise.reject(new Error('The current connection does not support MicroPython realtime mode'));
+        }
+        if (typeof peripheral.hasLiveObject === 'function' && peripheral.hasLiveObject('_ob_tm1650_cls')) {
+            return Promise.resolve();
+        }
+        const classSource = JSON.stringify(TM1650_CLASS_SOURCE);
+        return peripheral.execLive(`from machine import Pin, SoftI2C\nexec(${classSource})`, INIT_TIMEOUT)
+            .then(() => {
+                if (typeof peripheral.ensureLiveObject === 'function') {
+                    return peripheral.ensureLiveObject('_ob_tm1650_cls', '');
+                }
+                return null;
+            });
     };
 
     return {
@@ -158,11 +182,11 @@ function registerDeviceExtensionRuntime (runtime) {
             const sda = clampInteger(args.SDA, 0, 48, 21);
             const scl = clampInteger(args.SCL, 0, 48, 22);
             const brightness = clampInteger(args.BRIGHTNESS, 1, 8, 4);
-            const classSource = JSON.stringify(TM1650_CLASS_SOURCE);
-            const code = `from machine import Pin, SoftI2C\nexec(${classSource})\n` +
+            return ensureClass().then(() => execLive(
                 `_ob_tm1650_i2c = SoftI2C(sda=Pin(${sda}), scl=Pin(${scl}), freq=100000)\n` +
-                `_ob_tm1650 = _OBTM1650(_ob_tm1650_i2c, brightness=${brightness})`;
-            return execLive(code);
+                `_ob_tm1650 = _OBTM1650(_ob_tm1650_i2c, brightness=${brightness})`,
+                INIT_TIMEOUT
+            ));
         },
 
         espTm1650_showNumber: args => {
