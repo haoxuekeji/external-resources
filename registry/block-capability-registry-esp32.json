@@ -1218,7 +1218,7 @@
     {
       "extensionId": "espOled",
       "name": "OLED Display",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "supportDevices": [
         "microPythonEsp32",
         "microPythonEsp8266"

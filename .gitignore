@@ -1,6 +1,9 @@
 # OSX
 .DS_Store
 
+# Python bytecode caches (must never ship inside extension lib dirs)
+__pycache__/
+
 # Editor
 .vscode
 

@@ -164,7 +164,7 @@ function extractArgs (json, fieldDefaults, toolboxDefaults) {
 function mockPython () {
     const store = {
         imports_: {}, libraries_: {}, variables_: {}, setups_: {},
-        loops_: {}, definitions_: {},
+        loops_: {}, definitions_: {}, customFunctions_: {},
         INDENT: '    ',
         valueToCode: () => '0',
         quote_: s => `'${s}'`,
@@ -217,6 +217,7 @@ function capturePython (extId, blockDefs) {
         Python.libraries_ = {};
         Python.setups_ = {};
         Python.variables_ = {};
+        Python.customFunctions_ = {};
         let kind = null;
         try {
             const out = gen(mockBlock);

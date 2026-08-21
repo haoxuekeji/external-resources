@@ -9,8 +9,27 @@ function registerGenerators (Blockly) {
 
         Blockly.Python.imports_.espOled_machine = 'from machine import Pin, SoftI2C';
         Blockly.Python.imports_.espOled = 'import ssd1306';
+        // SSD1306 modules ship as 0x3C or 0x3D. Probe the bus instead of
+        // relying on the library default (0x3C), otherwise a 0x3D screen
+        // crashes main.py with ENODEV right at boot. Same address policy
+        // as the realtime runtime (_OBSSD1306._resolve_addr): prefer
+        // 0x3C/0x3D from the scan, fall back to 0x3C on an empty scan
+        // (the driver then reports the missing device itself).
+        Blockly.Python.customFunctions_.espOled_addr = `def _oled_addr(i2c):
+    try:
+        devices = i2c.scan()
+    except Exception:
+        devices = []
+    for address in (0x3C, 0x3D):
+        if address in devices:
+            return address
+    return 0x3C
+`;
 
-        return `_oled = ssd1306.SSD1306_I2C(128, 64, SoftI2C(sda=Pin(${sda}), scl=Pin(${scl})))\n`;
+        // freq matches the realtime runtime so both modes drive the same
+        // screen with identical bus timing.
+        return `_oled_i2c = SoftI2C(sda=Pin(${sda}), scl=Pin(${scl}), freq=400000)\n` +
+            `_oled = ssd1306.SSD1306_I2C(128, 64, _oled_i2c, addr=_oled_addr(_oled_i2c))\n`;
     };
 
     Blockly.Python.espOled_text = function (block) {
