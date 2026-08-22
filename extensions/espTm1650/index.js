@@ -4,11 +4,11 @@ const espTm1650 = formatMessage => ({
         default: 'TM1650 4-digit display'
     }),
     extensionId: 'espTm1650',
-    version: '1.0.2',
+    version: '1.0.3',
     supportDevice: ['microPythonEsp32'],
     programMode: ['realtime', 'upload'],
     author: 'OpenBlock',
-    iconURL: 'assets/tm1650.svg',
+    iconURL: 'assets/tm1650.png',
     description: formatMessage({
         id: 'espTm1650.description',
         default: 'Drive a TM1650 four-digit seven-segment display over a two-wire interface.'

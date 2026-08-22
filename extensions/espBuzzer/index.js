@@ -4,11 +4,11 @@ const espBuzzer = formatMessage => ({
         default: 'Buzzer Music'
     }),
     extensionId: 'espBuzzer',
-    version: '1.1.0',
+    version: '1.1.1',
     supportDevice: ['microPythonEsp32', 'microPythonEsp8266'],
     programMode: ['realtime', 'upload'],
     author: 'OpenBlock',
-    iconURL: `assets/buzzer.svg`,
+    iconURL: `assets/buzzer.png`,
     description: formatMessage({
         id: 'espBuzzer.description',
         default: 'Play musical notes on a passive buzzer.'

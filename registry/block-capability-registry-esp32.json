@@ -4,7 +4,7 @@
   "generator": "external-resources-v3/scripts/generate-block-registry.js",
   "source": {
     "repo": "external-resources-v3",
-    "commit": "c62b0ca75f8b0815eaedcd6ab578681d694efda6"
+    "commit": "28d2350bd8883df0c0d8f5fbe0d078e0471163d3"
   },
   "extensionCount": 15,
   "blockCount": 59,
@@ -12,7 +12,7 @@
     {
       "extensionId": "espBuzzer",
       "name": "Buzzer Music",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "supportDevices": [
         "microPythonEsp32",
         "microPythonEsp8266"
@@ -200,7 +200,7 @@
     {
       "extensionId": "espDht",
       "name": "DHT",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "supportDevices": [
         "microPythonEsp32",
         "microPythonEsp8266"
@@ -274,7 +274,7 @@
     {
       "extensionId": "espDs18b20",
       "name": "DS18B20",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "supportDevices": [
         "microPythonEsp32",
         "microPythonEsp8266"
@@ -328,7 +328,7 @@
     {
       "extensionId": "espHttp",
       "name": "HTTP Request",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "supportDevices": [
         "microPythonEsp32",
         "microPythonEsp8266"
@@ -438,7 +438,7 @@
     {
       "extensionId": "espLcd1602",
       "name": "LCD1602",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "supportDevices": [
         "microPythonEsp32",
         "microPythonEsp8266"
@@ -581,7 +581,7 @@
     {
       "extensionId": "espMotor",
       "name": "DC Motor",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "supportDevices": [
         "microPythonEsp32",
         "microPythonEsp8266"
@@ -813,7 +813,7 @@
     {
       "extensionId": "espMpu6050",
       "name": "MPU6050",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "supportDevices": [
         "microPythonEsp32",
         "microPythonEsp8266"
@@ -945,7 +945,7 @@
     {
       "extensionId": "espMqtt",
       "name": "MQTT",
-      "version": "1.2.0",
+      "version": "1.2.1",
       "supportDevices": [
         "microPythonEsp32",
         "microPythonEsp8266"
@@ -1133,7 +1133,7 @@
     {
       "extensionId": "espNtp",
       "name": "Network Time",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "supportDevices": [
         "microPythonEsp32",
         "microPythonEsp8266"
@@ -1218,7 +1218,7 @@
     {
       "extensionId": "espOled",
       "name": "OLED Display",
-      "version": "1.1.1",
+      "version": "1.1.2",
       "supportDevices": [
         "microPythonEsp32",
         "microPythonEsp8266"
@@ -1409,7 +1409,7 @@
     {
       "extensionId": "espRgbLedStrip",
       "name": "RGB LED Strip",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "supportDevices": [
         "microPythonEsp32",
         "microPythonEsp8266"
@@ -1624,7 +1624,7 @@
     {
       "extensionId": "espSdCard",
       "name": "SD Card",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "supportDevices": [
         "microPythonEsp32",
         "microPythonEsp8266"
@@ -1820,7 +1820,7 @@
     {
       "extensionId": "espServo",
       "name": "Servo",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "supportDevices": [
         "microPythonEsp32",
         "microPythonEsp8266"
@@ -1912,7 +1912,7 @@
     {
       "extensionId": "espTm1650",
       "name": "TM1650 4-digit display",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "supportDevices": [
         "microPythonEsp32"
       ],
@@ -2185,7 +2185,7 @@
     {
       "extensionId": "espUltrasonic",
       "name": "Ultrasonic",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "supportDevices": [
         "microPythonEsp32",
         "microPythonEsp8266"

@@ -4,11 +4,11 @@ const espOled = formatMessage => ({
         default: 'OLED Display'
     }),
     extensionId: 'espOled',
-    version: '1.1.1',
+    version: '1.1.2',
     supportDevice: ['microPythonEsp32', 'microPythonEsp8266'],
     programMode: ['realtime', 'upload'],
     author: 'OpenBlock',
-    iconURL: `assets/oled.svg`,
+    iconURL: `assets/oled.png`,
     description: formatMessage({
         id: 'espOled.description',
         default: '128x64 I2C OLED display based on SSD1306 drivers.'

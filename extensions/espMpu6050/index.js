@@ -4,11 +4,11 @@ const espMpu6050 = formatMessage => ({
         default: 'MPU6050'
     }),
     extensionId: 'espMpu6050',
-    version: '1.1.0',
+    version: '1.1.1',
     supportDevice: ['microPythonEsp32', 'microPythonEsp8266'],
     programMode: ['realtime', 'upload'],
     author: 'OpenBlock',
-    iconURL: `assets/mpu6050.svg`,
+    iconURL: `assets/mpu6050.png`,
     description: formatMessage({
         id: 'espMpu6050.description',
         default: '6-axis accelerometer and gyroscope motion sensor.'

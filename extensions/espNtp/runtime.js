@@ -4,7 +4,16 @@
 /* eslint-disable no-control-regex */
 /* eslint-disable quotes */
 /* eslint-disable prefer-template */
+/* eslint-disable no-var, indent */
 
+// Every device extension runtime.js executes as a classic <script> on the
+// same page, so top-level const/let declarations share one global lexical
+// scope. Identical helper names across extensions (e.g. clampInteger) made
+// every later script die at parse time with "Identifier ... has already
+// been declared" before a single line ran, leaving the extension with no
+// realtime primitives. Keep the whole body inside an IIFE and publish the
+// register hook through a redeclarable `var`.
+var registerDeviceExtensionRuntime = (function () {
 const clampInteger = (value, min, max, fallback) => {
     const number = parseInt(value, 10);
     if (!Number.isFinite(number)) return fallback;
@@ -101,5 +110,8 @@ function registerDeviceExtensionRuntime (runtime) {
         }
     };
 }
+
+return registerDeviceExtensionRuntime;
+})();
 
 exports = registerDeviceExtensionRuntime;

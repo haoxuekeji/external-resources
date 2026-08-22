@@ -4,11 +4,11 @@ const espDht = formatMessage => ({
         default: 'DHT'
     }),
     extensionId: 'espDht',
-    version: '1.0.0',
+    version: '1.0.1',
     supportDevice: ['microPythonEsp32', 'microPythonEsp8266'],
     programMode: ['realtime', 'upload'],
     author: 'OpenBlock',
-    iconURL: `assets/dht.svg`,
+    iconURL: `assets/dht.png`,
     description: formatMessage({
         id: 'espDht.description',
         default: 'Read temperature and humidity from DHT11 / DHT22 sensors.'

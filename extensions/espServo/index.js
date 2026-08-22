@@ -4,11 +4,11 @@ const espServo = formatMessage => ({
         default: 'Servo'
     }),
     extensionId: 'espServo',
-    version: '1.1.0',
+    version: '1.1.1',
     supportDevice: ['microPythonEsp32', 'microPythonEsp8266'],
     programMode: ['realtime', 'upload'],
     author: 'OpenBlock',
-    iconURL: `assets/servo.svg`,
+    iconURL: `assets/servo.png`,
     description: formatMessage({
         id: 'espServo.description',
         default: 'Control standard 180 degree servos through PWM.'

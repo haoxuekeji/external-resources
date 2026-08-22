@@ -4,11 +4,11 @@ const espRgbLedStrip = formatMessage => ({
         default: 'RGB LED Strip'
     }),
     extensionId: 'espRgbLedStrip',
-    version: '1.0.0',
+    version: '1.0.1',
     supportDevice: ['microPythonEsp32', 'microPythonEsp8266'],
     programMode: ['realtime', 'upload'],
     author: 'OpenBlock',
-    iconURL: `assets/rgbLedStrip.svg`,
+    iconURL: `assets/rgbLedStrip.png`,
     description: formatMessage({
         id: 'espRgbLedStrip.description',
         default: 'Control WS2812 / NeoPixel RGB LED strips.'

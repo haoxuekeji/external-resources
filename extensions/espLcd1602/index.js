@@ -4,11 +4,11 @@ const espLcd1602 = formatMessage => ({
         default: 'LCD1602'
     }),
     extensionId: 'espLcd1602',
-    version: '1.1.0',
+    version: '1.1.1',
     supportDevice: ['microPythonEsp32', 'microPythonEsp8266'],
     programMode: ['realtime', 'upload'],
     author: 'OpenBlock',
-    iconURL: `assets/lcd1602.svg`,
+    iconURL: `assets/lcd1602.png`,
     description: formatMessage({
         id: 'espLcd1602.description',
         default: 'Show text on a 16x2 character LCD with I2C backpack.'

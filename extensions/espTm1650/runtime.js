@@ -1,7 +1,16 @@
 /* eslint-disable func-style */
 /* eslint-disable max-len */
 /* eslint-disable require-jsdoc */
+/* eslint-disable no-var, indent */
 
+// Every device extension runtime.js executes as a classic <script> on the
+// same page, so top-level const/let declarations share one global lexical
+// scope. Identical helper names across extensions (e.g. clampInteger) made
+// every later script die at parse time with "Identifier ... has already
+// been declared" before a single line ran, leaving the extension with no
+// realtime primitives. Keep the whole body inside an IIFE and publish the
+// register hook through a redeclarable `var`.
+var registerDeviceExtensionRuntime = (function () {
 const TM1650_CLASS_SOURCE = `class _OBTM1650:
     CONTROL_ADDRESS = 0x24
     DIGIT_ADDRESSES = (0x34, 0x35, 0x36, 0x37)
@@ -216,5 +225,8 @@ function registerDeviceExtensionRuntime (runtime) {
         espTm1650_clear: () => execLive('_ob_tm1650.clear()')
     };
 }
+
+return registerDeviceExtensionRuntime;
+})();
 
 exports = registerDeviceExtensionRuntime;

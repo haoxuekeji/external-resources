@@ -1,7 +1,16 @@
 /* eslint-disable func-style */
 /* eslint-disable max-len */
 /* eslint-disable require-jsdoc */
+/* eslint-disable no-var, indent */
 
+// Every device extension runtime.js executes as a classic <script> on the
+// same page, so top-level const/let declarations share one global lexical
+// scope. Identical helper names across extensions (e.g. clampInteger) made
+// every later script die at parse time with "Identifier ... has already
+// been declared" before a single line ran, leaving the extension with no
+// realtime primitives. Keep the whole body inside an IIFE and publish the
+// register hook through a redeclarable `var`.
+var registerDeviceExtensionRuntime = (function () {
 const OLED_CLASS_SOURCE = `class _OBSSD1306:
     def __init__(self, i2c):
         self.i2c = i2c
@@ -140,5 +149,8 @@ _ob_oled = _OBSSD1306(_ob_oled_i2c)`;
         espOled_show: () => execLive(requireOLED('_ob_oled.show()'))
     };
 }
+
+return registerDeviceExtensionRuntime;
+})();
 
 exports = registerDeviceExtensionRuntime;

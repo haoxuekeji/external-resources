@@ -4,10 +4,10 @@ const espSdCard = formatMessage => ({
         default: 'SD Card'
     }),
     extensionId: 'espSdCard',
-    version: '1.1.0',
+    version: '1.1.1',
     supportDevice: ['microPythonEsp32', 'microPythonEsp8266'],
     author: 'OpenBlock',
-    iconURL: `assets/sdcard.svg`,
+    iconURL: `assets/sdcard.png`,
     description: formatMessage({
         id: 'espSdCard.description',
         default: 'Log and read data on a SPI SD card.'

@@ -4,11 +4,11 @@ const espDs18b20 = formatMessage => ({
         default: 'DS18B20'
     }),
     extensionId: 'espDs18b20',
-    version: '1.1.0',
+    version: '1.1.1',
     supportDevice: ['microPythonEsp32', 'microPythonEsp8266'],
     programMode: ['realtime', 'upload'],
     author: 'OpenBlock',
-    iconURL: `assets/ds18b20.svg`,
+    iconURL: `assets/ds18b20.png`,
     description: formatMessage({
         id: 'espDs18b20.description',
         default: 'Waterproof digital temperature sensor on the 1-Wire bus.'

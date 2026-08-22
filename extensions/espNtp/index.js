@@ -4,10 +4,10 @@ const espNtp = formatMessage => ({
         default: 'Network Time'
     }),
     extensionId: 'espNtp',
-    version: '1.1.0',
+    version: '1.1.1',
     supportDevice: ['microPythonEsp32', 'microPythonEsp8266'],
     author: 'OpenBlock',
-    iconURL: `assets/ntp.svg`,
+    iconURL: `assets/ntp.png`,
     description: formatMessage({
         id: 'espNtp.description',
         default: 'Synchronize the clock from an NTP server and read date and time.'

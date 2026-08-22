@@ -4,11 +4,11 @@ const espMotor = formatMessage => ({
         default: 'DC Motor'
     }),
     extensionId: 'espMotor',
-    version: '1.1.0',
+    version: '1.1.1',
     supportDevice: ['microPythonEsp32', 'microPythonEsp8266'],
     programMode: ['realtime', 'upload'],
     author: 'OpenBlock',
-    iconURL: `assets/motor.svg`,
+    iconURL: `assets/motor.png`,
     description: formatMessage({
         id: 'espMotor.description',
         default: 'Drive DC motors and smart cars with L298N / TB6612.'
