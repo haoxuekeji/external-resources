@@ -6,6 +6,9 @@ const ultrasonic = formatMessage => ({
     extensionId: 'espUltrasonic',
     version: '1.1.1',
     supportDevice: ['microPythonEsp32', 'microPythonEsp8266'],
+    // The esp32 built-in sensor category already covers these blocks, hide
+    // the library entry there; loading by id (old projects) is unaffected.
+    hiddenForDevices: ['microPythonEsp32'],
     programMode: ['realtime', 'upload'],
     author: 'ArthurZheng',
     iconURL: `assets/ultrasonic.png`,

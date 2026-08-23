@@ -6,6 +6,9 @@ const espServo = formatMessage => ({
     extensionId: 'espServo',
     version: '1.1.1',
     supportDevice: ['microPythonEsp32', 'microPythonEsp8266'],
+    // The esp32 built-in pin category already covers these blocks, hide the
+    // library entry there; loading by id (old projects) is unaffected.
+    hiddenForDevices: ['microPythonEsp32'],
     programMode: ['realtime', 'upload'],
     author: 'OpenBlock',
     iconURL: `assets/servo.png`,
