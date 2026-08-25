@@ -1,12 +1,9 @@
 {
+    "repository": "haoxuekeji/external-resources",
     "updater": {
         "default": {
             "provider": "github",
-            "repo": "openblockcc/external-resources-v3"
-        },
-        "cn": {
-            "provider": "gitee",
-            "repo": "openblockcc/external-resources-v3"
+            "repo": "haoxuekeji/external-resources"
         }
     },
     "version": "x.x.x"
