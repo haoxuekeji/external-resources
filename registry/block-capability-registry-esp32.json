@@ -4,10 +4,10 @@
   "generator": "external-resources-v3/scripts/generate-block-registry.js",
   "source": {
     "repo": "external-resources-v3",
-    "commit": "ed3f3ef1b5df25e47de618fc0b0638b492c632b6"
+    "commit": "3eb238ba07f727a7b2ac02ae5443b8bbac214e46"
   },
-  "extensionCount": 18,
-  "blockCount": 74,
+  "extensionCount": 19,
+  "blockCount": 80,
   "extensions": [
     {
       "extensionId": "espBme280",
@@ -2631,6 +2631,196 @@
             "variables": [
               "ultrasonic_5_5"
             ]
+          },
+          "safety": []
+        }
+      ]
+    },
+    {
+      "extensionId": "espWebRemote",
+      "name": "Web Remote",
+      "version": "1.0.0",
+      "supportDevices": [
+        "microPythonEsp32",
+        "microPythonEsp8266"
+      ],
+      "programModes": [
+        "realtime",
+        "upload"
+      ],
+      "bundledLibrary": "lib",
+      "official": true,
+      "tags": [
+        "communication"
+      ],
+      "blocks": [
+        {
+          "opcode": "espWebRemote_address",
+          "shape": "reporter_string",
+          "args": [],
+          "pythonMapping": {
+            "available": true,
+            "kind": "expression",
+            "imports": [
+              "import obwebremote"
+            ],
+            "libraries": [],
+            "setups": [
+              "espWebRemote"
+            ],
+            "variables": []
+          },
+          "safety": []
+        },
+        {
+          "opcode": "espWebRemote_setLabel",
+          "shape": "statement",
+          "args": [
+            {
+              "name": "TEXT",
+              "kind": "input",
+              "check": null,
+              "default": "hello"
+            },
+            {
+              "name": "LABEL",
+              "kind": "dropdown",
+              "dynamicOptions": null,
+              "allowedValues": [
+                "L1",
+                "L2",
+                "L3"
+              ],
+              "default": "L1"
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [
+              "import obwebremote"
+            ],
+            "libraries": [],
+            "setups": [
+              "espWebRemote"
+            ],
+            "variables": []
+          },
+          "safety": []
+        },
+        {
+          "opcode": "espWebRemote_slider",
+          "shape": "reporter_number",
+          "args": [
+            {
+              "name": "SLIDER",
+              "kind": "dropdown",
+              "dynamicOptions": null,
+              "allowedValues": [
+                "S1",
+                "S2",
+                "S3"
+              ],
+              "default": "S1"
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "expression",
+            "imports": [
+              "import obwebremote"
+            ],
+            "libraries": [],
+            "setups": [
+              "espWebRemote",
+              "espWebRemote_slider_S1"
+            ],
+            "variables": []
+          },
+          "safety": []
+        },
+        {
+          "opcode": "espWebRemote_startAp",
+          "shape": "statement",
+          "args": [
+            {
+              "name": "SSID",
+              "kind": "input",
+              "check": null,
+              "default": null
+            },
+            {
+              "name": "PWD",
+              "kind": "input",
+              "check": null,
+              "default": null
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [
+              "import obwebremote"
+            ],
+            "libraries": [],
+            "setups": [
+              "espWebRemote"
+            ],
+            "variables": []
+          },
+          "safety": []
+        },
+        {
+          "opcode": "espWebRemote_startSta",
+          "shape": "statement",
+          "args": [],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [
+              "import obwebremote"
+            ],
+            "libraries": [],
+            "setups": [
+              "espWebRemote"
+            ],
+            "variables": []
+          },
+          "safety": []
+        },
+        {
+          "opcode": "espWebRemote_whenButton",
+          "shape": "hat",
+          "args": [
+            {
+              "name": "BTN",
+              "kind": "dropdown",
+              "dynamicOptions": null,
+              "allowedValues": [
+                "A",
+                "B",
+                "C",
+                "D",
+                "E",
+                "F"
+              ],
+              "default": "A"
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [
+              "import obwebremote"
+            ],
+            "libraries": [
+              "espWebRemote_handler_A"
+            ],
+            "setups": [
+              "espWebRemote",
+              "espWebRemote_button_A"
+            ],
+            "variables": []
           },
           "safety": []
         }

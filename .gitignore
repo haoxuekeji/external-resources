@@ -3,6 +3,7 @@
 
 # Python bytecode caches (must never ship inside extension lib dirs)
 __pycache__/
+*.pyc
 
 # Editor
 .vscode
@@ -15,5 +16,3 @@ node_modules/
 
 # Packaged files
 dist/
-__pycache__/
-*.pyc
