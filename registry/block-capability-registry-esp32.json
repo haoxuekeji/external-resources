@@ -4,10 +4,10 @@
   "generator": "external-resources-v3/scripts/generate-block-registry.js",
   "source": {
     "repo": "external-resources-v3",
-    "commit": "fb68c6daea271078cdad51b374997cfd3366d11c"
+    "commit": "ed3f3ef1b5df25e47de618fc0b0638b492c632b6"
   },
-  "extensionCount": 17,
-  "blockCount": 71,
+  "extensionCount": 18,
+  "blockCount": 74,
   "extensions": [
     {
       "extensionId": "espBme280",
@@ -610,6 +610,95 @@
               "espEspNow"
             ],
             "variables": []
+          },
+          "safety": []
+        }
+      ]
+    },
+    {
+      "extensionId": "espEvents",
+      "name": "Events",
+      "version": "1.0.0",
+      "supportDevices": [
+        "microPythonEsp32"
+      ],
+      "programModes": [
+        "realtime",
+        "upload"
+      ],
+      "bundledLibrary": null,
+      "official": true,
+      "tags": [
+        "event"
+      ],
+      "blocks": [
+        {
+          "opcode": "espEvents_everyNSeconds",
+          "shape": "hat",
+          "args": [
+            {
+              "name": "N",
+              "kind": "input",
+              "check": null,
+              "default": null
+            }
+          ],
+          "pythonMapping": {
+            "available": false,
+            "error": "generator 执行失败: Cannot read properties of undefined (reading 'push')"
+          },
+          "safety": []
+        },
+        {
+          "opcode": "espEvents_whenButton",
+          "shape": "hat",
+          "args": [
+            {
+              "name": "PIN",
+              "kind": "dropdown",
+              "dynamicOptions": "device_pins",
+              "allowedValues": null,
+              "default": "0",
+              "fallbackValues": [
+                "0",
+                "4",
+                "5",
+                "13",
+                "14"
+              ]
+            }
+          ],
+          "pythonMapping": {
+            "available": false,
+            "error": "generator 执行失败: Cannot read properties of undefined (reading 'push')"
+          },
+          "safety": []
+        },
+        {
+          "opcode": "espEvents_whenTouch",
+          "shape": "hat",
+          "args": [
+            {
+              "name": "TOUCH",
+              "kind": "dropdown",
+              "dynamicOptions": null,
+              "allowedValues": [
+                "4",
+                "2",
+                "15",
+                "13",
+                "12",
+                "14",
+                "27",
+                "33",
+                "32"
+              ],
+              "default": "4"
+            }
+          ],
+          "pythonMapping": {
+            "available": false,
+            "error": "generator 执行失败: Cannot read properties of undefined (reading 'push')"
           },
           "safety": []
         }
