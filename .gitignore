@@ -15,3 +15,5 @@ node_modules/
 
 # Packaged files
 dist/
+__pycache__/
+*.pyc
