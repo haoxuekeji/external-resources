@@ -4,11 +4,133 @@
   "generator": "external-resources-v3/scripts/generate-block-registry.js",
   "source": {
     "repo": "external-resources-v3",
-    "commit": "28d2350bd8883df0c0d8f5fbe0d078e0471163d3"
+    "commit": "fb68c6daea271078cdad51b374997cfd3366d11c"
   },
-  "extensionCount": 15,
-  "blockCount": 59,
+  "extensionCount": 17,
+  "blockCount": 71,
   "extensions": [
+    {
+      "extensionId": "espBme280",
+      "name": "BME280",
+      "version": "1.0.0",
+      "supportDevices": [
+        "microPythonEsp32",
+        "microPythonEsp8266"
+      ],
+      "programModes": [
+        "realtime",
+        "upload"
+      ],
+      "bundledLibrary": "lib",
+      "official": true,
+      "tags": [
+        "sensor"
+      ],
+      "blocks": [
+        {
+          "opcode": "espBme280_altitude",
+          "shape": "reporter_number",
+          "args": [],
+          "pythonMapping": {
+            "available": true,
+            "kind": "expression",
+            "imports": [],
+            "libraries": [],
+            "setups": [],
+            "variables": []
+          },
+          "safety": []
+        },
+        {
+          "opcode": "espBme280_humidity",
+          "shape": "reporter_number",
+          "args": [],
+          "pythonMapping": {
+            "available": true,
+            "kind": "expression",
+            "imports": [],
+            "libraries": [],
+            "setups": [],
+            "variables": []
+          },
+          "safety": []
+        },
+        {
+          "opcode": "espBme280_init",
+          "shape": "statement",
+          "args": [
+            {
+              "name": "SDA",
+              "kind": "dropdown",
+              "dynamicOptions": "device_pins",
+              "allowedValues": null,
+              "default": "21",
+              "fallbackValues": [
+                "21",
+                "22",
+                "4",
+                "5"
+              ]
+            },
+            {
+              "name": "SCL",
+              "kind": "dropdown",
+              "dynamicOptions": "device_pins",
+              "allowedValues": null,
+              "default": "22",
+              "fallbackValues": [
+                "21",
+                "22",
+                "4",
+                "5"
+              ]
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [
+              "from machine import Pin, SoftI2C",
+              "import bme280"
+            ],
+            "libraries": [],
+            "setups": [
+              "espBme280"
+            ],
+            "variables": []
+          },
+          "safety": []
+        },
+        {
+          "opcode": "espBme280_pressure",
+          "shape": "reporter_number",
+          "args": [],
+          "pythonMapping": {
+            "available": true,
+            "kind": "expression",
+            "imports": [],
+            "libraries": [],
+            "setups": [],
+            "variables": []
+          },
+          "safety": []
+        },
+        {
+          "opcode": "espBme280_temperature",
+          "shape": "reporter_number",
+          "args": [],
+          "pythonMapping": {
+            "available": true,
+            "kind": "expression",
+            "imports": [],
+            "libraries": [],
+            "setups": [],
+            "variables": []
+          },
+          "safety": []
+        }
+      ]
+    },
     {
       "extensionId": "espBuzzer",
       "name": "Buzzer Music",
@@ -319,6 +441,174 @@
               "espDs18b20"
             ],
             "setups": [],
+            "variables": []
+          },
+          "safety": []
+        }
+      ]
+    },
+    {
+      "extensionId": "espEspNow",
+      "name": "ESP-NOW",
+      "version": "1.0.0",
+      "supportDevices": [
+        "microPythonEsp32",
+        "microPythonEsp8266"
+      ],
+      "programModes": [
+        "realtime",
+        "upload"
+      ],
+      "bundledLibrary": "lib",
+      "official": true,
+      "tags": [
+        "communication"
+      ],
+      "blocks": [
+        {
+          "opcode": "espEspNow_broadcast",
+          "shape": "statement",
+          "args": [
+            {
+              "name": "MSG",
+              "kind": "input",
+              "check": null,
+              "default": null
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [
+              "import obespnow"
+            ],
+            "libraries": [],
+            "setups": [
+              "espEspNow"
+            ],
+            "variables": []
+          },
+          "safety": []
+        },
+        {
+          "opcode": "espEspNow_init",
+          "shape": "statement",
+          "args": [],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [
+              "import obespnow"
+            ],
+            "libraries": [],
+            "setups": [
+              "espEspNow"
+            ],
+            "variables": []
+          },
+          "safety": []
+        },
+        {
+          "opcode": "espEspNow_message",
+          "shape": "reporter_string",
+          "args": [],
+          "pythonMapping": {
+            "available": true,
+            "kind": "expression",
+            "imports": [
+              "import obespnow"
+            ],
+            "libraries": [],
+            "setups": [
+              "espEspNow"
+            ],
+            "variables": []
+          },
+          "safety": []
+        },
+        {
+          "opcode": "espEspNow_myMac",
+          "shape": "reporter_string",
+          "args": [],
+          "pythonMapping": {
+            "available": true,
+            "kind": "expression",
+            "imports": [
+              "import obespnow"
+            ],
+            "libraries": [],
+            "setups": [
+              "espEspNow"
+            ],
+            "variables": []
+          },
+          "safety": []
+        },
+        {
+          "opcode": "espEspNow_send",
+          "shape": "statement",
+          "args": [
+            {
+              "name": "MSG",
+              "kind": "input",
+              "check": null,
+              "default": null
+            },
+            {
+              "name": "MAC",
+              "kind": "input",
+              "check": null,
+              "default": null
+            }
+          ],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [
+              "import obespnow"
+            ],
+            "libraries": [],
+            "setups": [
+              "espEspNow"
+            ],
+            "variables": []
+          },
+          "safety": []
+        },
+        {
+          "opcode": "espEspNow_sender",
+          "shape": "reporter_string",
+          "args": [],
+          "pythonMapping": {
+            "available": true,
+            "kind": "expression",
+            "imports": [
+              "import obespnow"
+            ],
+            "libraries": [],
+            "setups": [
+              "espEspNow"
+            ],
+            "variables": []
+          },
+          "safety": []
+        },
+        {
+          "opcode": "espEspNow_whenMessage",
+          "shape": "hat",
+          "args": [],
+          "pythonMapping": {
+            "available": true,
+            "kind": "statement",
+            "imports": [
+              "import obespnow"
+            ],
+            "libraries": [
+              "espEspNow_handler"
+            ],
+            "setups": [
+              "espEspNow"
+            ],
             "variables": []
           },
           "safety": []
