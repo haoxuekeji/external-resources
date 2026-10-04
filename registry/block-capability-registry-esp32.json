@@ -4,7 +4,7 @@
   "generator": "external-resources-v3/scripts/generate-block-registry.js",
   "source": {
     "repo": "external-resources-v3",
-    "commit": "d687b1b136e6358c475ea47c366395f428775955"
+    "commit": "7b27fb0108c6ad1b1ac1a995172885fd233bb1d7"
   },
   "extensionCount": 19,
   "blockCount": 80,
@@ -1324,7 +1324,7 @@
     {
       "extensionId": "espMqtt",
       "name": "MQTT",
-      "version": "1.2.2",
+      "version": "1.2.3",
       "supportDevices": [
         "microPythonEsp32",
         "microPythonEsp8266"
