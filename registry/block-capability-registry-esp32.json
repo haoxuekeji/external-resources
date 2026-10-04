@@ -4,7 +4,7 @@
   "generator": "external-resources-v3/scripts/generate-block-registry.js",
   "source": {
     "repo": "external-resources-v3",
-    "commit": "33f12bf7f3a04a9c3e8c07bb63abe9dda620ede9"
+    "commit": "d687b1b136e6358c475ea47c366395f428775955"
   },
   "extensionCount": 19,
   "blockCount": 80,
@@ -2565,7 +2565,7 @@
     {
       "extensionId": "espUltrasonic",
       "name": "Ultrasonic",
-      "version": "1.1.1",
+      "version": "1.2.0",
       "supportDevices": [
         "microPythonEsp32",
         "microPythonEsp8266"
@@ -2574,7 +2574,7 @@
         "realtime",
         "upload"
       ],
-      "bundledLibrary": "lib",
+      "bundledLibrary": null,
       "official": true,
       "tags": [
         "sensor"
@@ -2625,13 +2625,13 @@
             "available": true,
             "kind": "expression",
             "imports": [
-              "from hcsr04_v0_2_1 import HCSR04"
+              "from machine import Pin",
+              "import machine",
+              "import time"
             ],
             "libraries": [],
             "setups": [],
-            "variables": [
-              "ultrasonic_5_5"
-            ]
+            "variables": []
           },
           "safety": []
         }
