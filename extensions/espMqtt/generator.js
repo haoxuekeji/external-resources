@@ -26,7 +26,11 @@ function registerGenerators (Blockly) {
         const host = Blockly.Python.valueToCode(block, 'HOST', Blockly.Python.ORDER_ATOMIC) || `'broker.emqx.io'`;
         const port = Blockly.Python.valueToCode(block, 'PORT', Blockly.Python.ORDER_ATOMIC) || '1883';
 
-        let code = `_mqtt = MQTTClient('ob_' + ubinascii.hexlify(machine.unique_id()).decode(), str(${host}), int(${port}))\n`;
+        // `global`: in asyncio multi-task mode connect runs inside an
+        // `async def` task; without it _mqtt stays local and the message
+        // poller / publish blocks in other tasks never see the client.
+        let code = `global _mqtt\n`;
+        code += `_mqtt = MQTTClient('ob_' + ubinascii.hexlify(machine.unique_id()).decode(), str(${host}), int(${port}))\n`;
         code += `_mqtt.set_callback(_ob_mqtt_cb)\n`;
         code += `_mqtt.connect()\n`;
         return code;
@@ -56,7 +60,17 @@ function registerGenerators (Blockly) {
 
         // Poll for incoming messages in the generated repeat() loop, so the
         // hat also works in programs that have no forever loop of their own.
-        Blockly.Python.loops_.espMqtt_checkMsg = `_mqtt.check_msg()`;
+        // The poller starts with the program (asyncio: its own task right
+        // away), usually before the connect block has run, and a dropped
+        // network makes check_msg raise; neither may kill the whole program.
+        Blockly.Python.libraries_.espMqtt_poll =
+            `def _ob_mqtt_poll():\n` +
+            `    if '_mqtt' in globals():\n` +
+            `        try:\n` +
+            `            _mqtt.check_msg()\n` +
+            `        except OSError:\n` +
+            `            pass\n`;
+        Blockly.Python.loops_.espMqtt_checkMsg = `_ob_mqtt_poll()`;
 
         let code = `def on_mqtt_message():\n`;
 

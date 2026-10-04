@@ -4,7 +4,7 @@ const espNtp = formatMessage => ({
         default: 'Network Time'
     }),
     extensionId: 'espNtp',
-    version: '1.1.1',
+    version: '1.1.2',
     supportDevice: ['microPythonEsp32', 'microPythonEsp8266'],
     author: 'OpenBlock',
     iconURL: `assets/ntp.png`,

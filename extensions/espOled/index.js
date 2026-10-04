@@ -4,7 +4,7 @@ const espOled = formatMessage => ({
         default: 'OLED Display'
     }),
     extensionId: 'espOled',
-    version: '1.1.2',
+    version: '1.1.3',
     supportDevice: ['microPythonEsp32', 'microPythonEsp8266'],
     programMode: ['realtime', 'upload'],
     author: 'OpenBlock',

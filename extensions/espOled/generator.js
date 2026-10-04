@@ -28,7 +28,12 @@ function registerGenerators (Blockly) {
 
         // freq matches the realtime runtime so both modes drive the same
         // screen with identical bus timing.
-        return `_oled_i2c = SoftI2C(sda=Pin(${sda}), scl=Pin(${scl}), freq=400000)\n` +
+        // `global`: in asyncio multi-task mode (event hats / several begin
+        // stacks) this runs inside one `async def` task while other tasks and
+        // event handlers draw on the same screen; a bare assignment would only
+        // bind a local and every other task would hit NameError on _oled.
+        return `global _oled_i2c, _oled\n` +
+            `_oled_i2c = SoftI2C(sda=Pin(${sda}), scl=Pin(${scl}), freq=400000)\n` +
             `_oled = ssd1306.SSD1306_I2C(128, 64, _oled_i2c, addr=_oled_addr(_oled_i2c))\n`;
     };
 

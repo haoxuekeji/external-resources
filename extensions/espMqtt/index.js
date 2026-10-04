@@ -4,7 +4,7 @@ const espMqtt = formatMessage => ({
         default: 'MQTT'
     }),
     extensionId: 'espMqtt',
-    version: '1.2.1',
+    version: '1.2.2',
     supportDevice: ['microPythonEsp32', 'microPythonEsp8266'],
     author: 'OpenBlock',
     iconURL: `assets/mqtt.png`,
