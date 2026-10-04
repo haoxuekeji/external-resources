@@ -34,12 +34,26 @@ const parseReporterString = output => {
     return text.replace(/^\s*>>> ?/gm, '').trim();
 };
 
-const notifyMessageHat = (runtime, output) => {
-    if (parseReporterString(output) === '1' && typeof runtime.startHats === 'function') {
-        runtime.startHats('espMqtt_whenMessage');
-    }
-    return output;
-};
+// Upload mode polls the client from the generated main loop; realtime has no
+// such loop, so the "when message received" hat polls by itself. It is an
+// edge-activated hat: the runtime evaluates its predicate every frame, the
+// predicate answers from the last poll and starts the next one in the
+// background (one in flight, at most every POLL_MS). The board counts the
+// received messages in _ob_mqtt_seq; a hat fires when the count went up.
+const POLL_MS = 300;
+// No client connected on the board (yet): poll lazily until connect runs.
+const IDLE_POLL_MS = 1500;
+
+// Never raises: a dropped connection only marks the client disconnected,
+// so a forever-polling hat cannot flood the editor with errors.
+const POLL_CODE = [
+    "if globals().get('_ob_mqtt_connected'):",
+    '    try:',
+    '        _ob_mqtt.check_msg()',
+    '    except Exception:',
+    '        _ob_mqtt_connected = False',
+    "print(globals().get('_ob_mqtt_seq', 0) if globals().get('_ob_mqtt_connected') else -1)"
+].join('\n');
 
 function registerDeviceExtensionRuntime (runtime) {
     const getPeripheral = () => {
@@ -48,14 +62,55 @@ function registerDeviceExtensionRuntime (runtime) {
         return runtime.peripheralExtensions[device.deviceId] || null;
     };
 
-    const execLive = (code, timeout = 5000) => {
+    const execLive = (code, timeout = 5000, options) => {
         const peripheral = getPeripheral();
         if (!peripheral || typeof peripheral.execLive !== 'function') {
             return Promise.reject(
                 new Error('The current connection does not support MicroPython realtime mode')
             );
         }
-        return peripheral.execLive(code, timeout);
+        return peripheral.execLive(code, timeout, options);
+    };
+
+    // Highest message count seen on the board, null before the first answer.
+    let latestSeq = null;
+    let connected = false;
+    let polling = false;
+    let lastPollAt = 0;
+    // `${targetId}/${topBlockId}` -> {seen, fired} for every message hat.
+    const messageHats = {};
+
+    // Take a message count printed by the board; false when the output
+    // carries none (no client connected, command failed).
+    const observeSeq = output => {
+        const seq = parseInt(parseReporterString(output), 10);
+        if (!Number.isFinite(seq) || seq < 0) return false;
+        if (latestSeq === null || seq < latestSeq) {
+            // First answer, or the board restarted and counts from zero
+            // again: messages from before must not fire any hat.
+            Object.keys(messageHats).forEach(key => {
+                messageHats[key].seen = seq;
+            });
+        }
+        latestSeq = seq;
+        return true;
+    };
+
+    const pollMessages = () => {
+        const now = Date.now();
+        if (polling || now - lastPollAt < (connected ? POLL_MS : IDLE_POLL_MS)) return;
+        polling = true;
+        lastPollAt = now;
+        execLive(POLL_CODE, 3000, {isReadOnly: true})
+            .then(output => {
+                connected = observeSeq(output);
+            })
+            .catch(() => {
+                connected = false;
+            })
+            .then(() => {
+                polling = false;
+            });
     };
 
     const requireClient = code => [
@@ -82,7 +137,7 @@ function registerDeviceExtensionRuntime (runtime) {
                 'import machine, ubinascii',
                 loadSource(MQTT_SOURCE),
                 'def _ob_mqtt_callback(_topic, _msg):',
-                '    global _ob_mqtt_topic, _ob_mqtt_msg, _ob_mqtt_message_pending',
+                '    global _ob_mqtt_topic, _ob_mqtt_msg, _ob_mqtt_seq',
                 '    try:',
                 '        _ob_mqtt_topic = _topic.decode()',
                 '    except Exception:',
@@ -91,23 +146,29 @@ function registerDeviceExtensionRuntime (runtime) {
                 '        _ob_mqtt_msg = _msg.decode()',
                 '    except Exception:',
                 '        _ob_mqtt_msg = str(_msg)',
-                '    _ob_mqtt_message_pending = True',
+                '    _ob_mqtt_seq += 1',
                 "_ob_mqtt_topic = ''",
                 "_ob_mqtt_msg = ''",
-                '_ob_mqtt_message_pending = False',
+                "if '_ob_mqtt_seq' not in globals():",
+                '    _ob_mqtt_seq = 0',
                 'try:',
                 "    if '_ob_mqtt' in globals() and _ob_mqtt_connected:",
                 '        _ob_mqtt.disconnect()',
                 'except Exception:',
                 '    pass',
                 '_ob_mqtt_connected = False',
+                // keepalive 0 like upload mode: with a keepalive the broker
+                // drops a client that only waits for messages (no pings).
                 "_ob_mqtt = MQTTClient('ob_' + ubinascii.hexlify(machine.unique_id()).decode(), " +
-                    host + ', port=' + port + ', keepalive=30)',
+                    host + ', port=' + port + ')',
                 '_ob_mqtt.set_callback(_ob_mqtt_callback)',
                 '_ob_mqtt.connect()',
-                '_ob_mqtt_connected = True'
+                '_ob_mqtt_connected = True',
+                'print(_ob_mqtt_seq)'
             ].join('\n');
-            return execLive(code, 12000);
+            return execLive(code, 12000).then(output => {
+                if (observeSeq(output)) connected = true;
+            });
         },
 
         espMqtt_disconnect: () => {
@@ -146,13 +207,35 @@ function registerDeviceExtensionRuntime (runtime) {
         espMqtt_checkMsg: () => {
             const code = requireClient([
                 'try:',
-                '    _ob_mqtt_message_pending = False',
                 '    _ob_mqtt.check_msg()',
-                '    print(1 if _ob_mqtt_message_pending else 0)',
                 'except Exception as _ob_error:',
-                "    raise OSError('MQTT check failed: %s' % _ob_error)"
+                "    raise OSError('MQTT check failed: %s' % _ob_error)",
+                "print(globals().get('_ob_mqtt_seq', 0))"
             ].join('\n'));
-            return execLive(code, 5000).then(output => notifyMessageHat(runtime, output));
+            return execLive(code, 5000).then(output => {
+                observeSeq(output);
+            });
+        },
+
+        espMqtt_whenMessage: (args, util) => {
+            pollMessages();
+            const thread = util && util.thread;
+            const key = thread ? `${thread.target ? thread.target.id : ''}/${thread.topBlock}` : '';
+            const hat = messageHats[key];
+            if (!hat) {
+                messageHats[key] = {seen: latestSeq, fired: false};
+                return false;
+            }
+            if (hat.fired) {
+                // One false answer after firing, so a message arriving
+                // right after the previous one is a new edge again.
+                hat.fired = false;
+                return false;
+            }
+            if (latestSeq === null || hat.seen === null || latestSeq <= hat.seen) return false;
+            hat.seen = latestSeq;
+            hat.fired = true;
+            return true;
         },
 
         espMqtt_topic: () => execLive(requireClient(
@@ -166,8 +249,8 @@ function registerDeviceExtensionRuntime (runtime) {
     Object.defineProperty(primitives, 'hats', {
         value: {
             espMqtt_whenMessage: {
-                edgeActivated: false,
-                restartExistingThreads: true
+                edgeActivated: true,
+                restartExistingThreads: false
             }
         },
         enumerable: false
@@ -176,6 +259,6 @@ function registerDeviceExtensionRuntime (runtime) {
 }
 
 return registerDeviceExtensionRuntime;
-})();
+}());
 
 exports = registerDeviceExtensionRuntime;
