@@ -4,7 +4,7 @@ const espBuzzer = formatMessage => ({
         default: 'Buzzer Music'
     }),
     extensionId: 'espBuzzer',
-    version: '1.1.1',
+    version: '1.1.2',
     supportDevice: ['microPythonEsp32', 'microPythonEsp8266'],
     programMode: ['realtime', 'upload'],
     author: 'OpenBlock',

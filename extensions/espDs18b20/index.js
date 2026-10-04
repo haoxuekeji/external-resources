@@ -4,7 +4,7 @@ const espDs18b20 = formatMessage => ({
         default: 'DS18B20'
     }),
     extensionId: 'espDs18b20',
-    version: '1.1.1',
+    version: '1.1.2',
     supportDevice: ['microPythonEsp32', 'microPythonEsp8266'],
     programMode: ['realtime', 'upload'],
     author: 'OpenBlock',
