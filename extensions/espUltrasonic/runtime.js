@@ -48,7 +48,11 @@ function registerDeviceExtensionRuntime (runtime) {
             const echo = clampInteger(args && args.ECHO, 0, 48, 18);
             const unit = args && args.UNIT === 'MM' ? 'MM' : 'CM';
             const sensor = `_ob_ultrasonic_${trig}_${echo}`;
-            const distance = unit === 'MM' ? `round(${sensor}_distance * 10)` :
+            // -2: the echo pulse never started (sensor missing / miswired /
+            // unpowered) -> -1; -1: pulse outlasted the timeout (nothing in
+            // range) -> 400 cm rated range. Same as the upload generator.
+            const distance = unit === 'MM' ?
+                `(${sensor}_distance if ${sensor}_distance < 0 else int(round(${sensor}_distance * 10)))` :
                 `${sensor}_distance`;
             const code = trig === echo ?
                 "raise ValueError('Ultrasonic TRIG and ECHO pins must be different')" :
@@ -56,7 +60,7 @@ function registerDeviceExtensionRuntime (runtime) {
                 'import machine\n' +
                 'import time\n' +
                 `if '${sensor}' not in globals():\n` +
-                `    ${sensor} = (Pin(${trig}, Pin.OUT), Pin(${echo}, Pin.IN))\n` +
+                `    ${sensor} = (Pin(${trig}, Pin.OUT), Pin(${echo}, Pin.IN, Pin.PULL_DOWN))\n` +
                 `${sensor}[0].value(0)\n` +
                 'time.sleep_us(2)\n' +
                 `${sensor}[0].value(1)\n` +
@@ -64,7 +68,9 @@ function registerDeviceExtensionRuntime (runtime) {
                 `${sensor}[0].value(0)\n` +
                 `try:\n    ${sensor}_pulse = machine.time_pulse_us(${sensor}[1], 1, 30000)\n` +
                 `except Exception as error:\n    raise OSError('Ultrasonic measurement failed: %s' % error)\n` +
-                `${sensor}_distance = round(${sensor}_pulse / 58.0, 1) if ${sensor}_pulse > 0 else 0\n` +
+                `if ${sensor}_pulse == -2:\n    ${sensor}_distance = -1\n` +
+                `elif ${sensor}_pulse < 0:\n    ${sensor}_distance = 400\n` +
+                `else:\n    ${sensor}_distance = min(400, round(${sensor}_pulse / 58.0, 1))\n` +
                 `print(${distance})`;
             return execLive(code).then(parseReporterNumber);
         }
@@ -72,6 +78,6 @@ function registerDeviceExtensionRuntime (runtime) {
 }
 
 return registerDeviceExtensionRuntime;
-})();
+}());
 
 exports = registerDeviceExtensionRuntime;

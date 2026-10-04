@@ -4,7 +4,7 @@ const ultrasonic = formatMessage => ({
         default: 'Ultrasonic'
     }),
     extensionId: 'espUltrasonic',
-    version: '1.1.1',
+    version: '1.2.0',
     supportDevice: ['microPythonEsp32', 'microPythonEsp8266'],
     // The esp32 built-in sensor category already covers these blocks, hide
     // the library entry there; loading by id (old projects) is unaffected.
@@ -22,7 +22,6 @@ const ultrasonic = formatMessage => ({
     runtime: 'runtime.js',
     toolbox: 'toolbox.js',
     translations: 'translations.js',
-    library: 'lib',
     official: true,
     tags: ['sensor'],
     helpLink: 'https://wiki.openblock.cc'
