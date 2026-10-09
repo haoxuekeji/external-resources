@@ -124,14 +124,16 @@ ${code}`;
             const rawAddr = args && args.ADDR;
             const addrArg = (rawAddr === '0x3C' || rawAddr === '0x3D') ? `, ${rawAddr}` : '';
             const classSource = JSON.stringify(OLED_CLASS_SOURCE);
-            const code = `from machine import Pin, SoftI2C
+            // 硬件 I2C（machine.I2C）默认开内部上拉，比 SoftI2C 稳（SoftI2C 不开上拉，
+            // 某些无板载上拉的 OLED 会 ETIMEDOUT）。I2C(0) 走 GPIO 矩阵，引脚可任选。
+            const code = `from machine import Pin, I2C
 import framebuf
 exec(${classSource})
 try:
     _ob_oled_i2c.deinit()
 except Exception:
     pass
-_ob_oled_i2c = SoftI2C(sda=Pin(${sda}), scl=Pin(${scl}), freq=400000)
+_ob_oled_i2c = I2C(0, scl=Pin(${scl}), sda=Pin(${sda}), freq=400000)
 _ob_oled = _OBSSD1306(_ob_oled_i2c${addrArg})`;
             return execLive(code);
         },

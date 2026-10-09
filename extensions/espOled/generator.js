@@ -9,7 +9,7 @@ function registerGenerators (Blockly) {
         // 地址：auto = 扫描/探测自动选可用地址（默认）；0x3C / 0x3D = 直接用所选地址。
         const addr = block.getFieldValue('ADDR') || 'auto';
 
-        Blockly.Python.imports_.espOled_machine = 'from machine import Pin, SoftI2C';
+        Blockly.Python.imports_.espOled_machine = 'from machine import Pin, I2C';
         Blockly.Python.imports_.espOled_time = 'import time';
         Blockly.Python.imports_.espOled = 'import ssd1306';
         // SSD1306 modules ship as 0x3C or 0x3D. Resolve the address
@@ -52,8 +52,10 @@ function registerGenerators (Blockly) {
         // event handlers draw on the same screen; a bare assignment would only
         // bind a local and every other task would hit NameError on _oled.
         const addrExpr = addr === 'auto' ? '_oled_addr(_oled_i2c)' : addr;
+        // 硬件 I2C（machine.I2C）在 ESP32 上默认开内部上拉，SoftI2C 不开——某些板
+        // 的 OLED 没板载上拉时 SoftI2C 会 ETIMEDOUT；硬件 I2C 更稳。I2C(0) 走 GPIO 矩阵，引脚可任选。
         return `global _oled_i2c, _oled\n` +
-            `_oled_i2c = SoftI2C(sda=Pin(${sda}), scl=Pin(${scl}), freq=400000)\n` +
+            `_oled_i2c = I2C(0, scl=Pin(${scl}), sda=Pin(${sda}), freq=400000)\n` +
             `_oled = ssd1306.SSD1306_I2C(128, 64, _oled_i2c, addr=${addrExpr})\n`;
     };
 
