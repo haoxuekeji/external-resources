@@ -4,7 +4,7 @@
   "generator": "external-resources-v3/scripts/generate-block-registry.js",
   "source": {
     "repo": "external-resources-v3",
-    "commit": "7b27fb0108c6ad1b1ac1a995172885fd233bb1d7"
+    "commit": "13f9499eb69e3d5b8a3000f6e3110b1b6b38d3ae"
   },
   "extensionCount": 19,
   "blockCount": 80,
@@ -1598,7 +1598,7 @@
     {
       "extensionId": "espOled",
       "name": "OLED Display",
-      "version": "1.1.3",
+      "version": "1.1.4",
       "supportDevices": [
         "microPythonEsp32",
         "microPythonEsp8266"
@@ -1663,7 +1663,8 @@
             "kind": "statement",
             "imports": [
               "from machine import Pin, SoftI2C",
-              "import ssd1306"
+              "import ssd1306",
+              "import time"
             ],
             "libraries": [],
             "setups": [],

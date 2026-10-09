@@ -8,22 +8,39 @@ function registerGenerators (Blockly) {
         const scl = block.getFieldValue('SCL');
 
         Blockly.Python.imports_.espOled_machine = 'from machine import Pin, SoftI2C';
+        Blockly.Python.imports_.espOled_time = 'import time';
         Blockly.Python.imports_.espOled = 'import ssd1306';
-        // SSD1306 modules ship as 0x3C or 0x3D. Probe the bus instead of
-        // relying on the library default (0x3C), otherwise a 0x3D screen
-        // crashes main.py with ENODEV right at boot. Same address policy
-        // as the realtime runtime (_OBSSD1306._resolve_addr): prefer
-        // 0x3C/0x3D from the scan, fall back to 0x3C on an empty scan
-        // (the driver then reports the missing device itself).
+        // SSD1306 modules ship as 0x3C or 0x3D. Resolve the address
+        // robustly (same policy as the realtime runtime
+        // _OBSSD1306._resolve_addr):
+        //   1. Retry the scan a few times with a short settle - at cold
+        //      boot the panel may not answer the very first scan yet, and
+        //      a momentary empty scan used to fall back to 0x3C and brick a
+        //      0x3D-only screen (ENODEV on main.py at boot).
+        //   2. If the scan stays empty/odd, probe 0x3C and 0x3D directly
+        //      with a zero-length write and use whichever ACKs, instead of
+        //      blindly assuming 0x3C.
+        //   3. Only when neither address answers do we raise a clear error.
         Blockly.Python.customFunctions_.espOled_addr = `def _oled_addr(i2c):
-    try:
-        devices = i2c.scan()
-    except Exception:
-        devices = []
+    devices = []
+    for _ in range(3):
+        try:
+            devices = i2c.scan()
+        except Exception:
+            devices = []
+        if 0x3C in devices or 0x3D in devices:
+            break
+        time.sleep_ms(50)
     for address in (0x3C, 0x3D):
         if address in devices:
             return address
-    return 0x3C
+    for address in (0x3C, 0x3D):
+        try:
+            i2c.writeto(address, b'')
+            return address
+        except Exception:
+            pass
+    raise OSError('SSD1306 OLED not found on SDA/SCL (addr 0x3C/0x3D)')
 `;
 
         // freq matches the realtime runtime so both modes drive the same

@@ -23,17 +23,26 @@ const OLED_CLASS_SOURCE = `class _OBSSD1306:
         self._init_display()
 
     def _resolve_addr(self):
-        try:
-            devices = self.i2c.scan()
-        except Exception:
-            devices = []
+        import time
+        devices = []
+        for _ in range(3):
+            try:
+                devices = self.i2c.scan()
+            except Exception:
+                devices = []
+            if 0x3C in devices or 0x3D in devices:
+                break
+            time.sleep_ms(50)
         for address in (0x3C, 0x3D):
             if address in devices:
                 return address
-        if not devices:
-            return 0x3C
-        found = ', '.join('0x%02X' % address for address in devices)
-        raise OSError('SSD1306 OLED not found (I2C scan: %s)' % found)
+        for address in (0x3C, 0x3D):
+            try:
+                self.i2c.writeto(address, b'')
+                return address
+            except Exception:
+                pass
+        raise OSError('SSD1306 OLED not found on SDA/SCL (addr 0x3C/0x3D)')
 
     def _write_cmd(self, command):
         self.i2c.writeto(self.addr, bytes((0x80, command & 0xFF)))
@@ -151,6 +160,6 @@ _ob_oled = _OBSSD1306(_ob_oled_i2c)`;
 }
 
 return registerDeviceExtensionRuntime;
-})();
+}());
 
 exports = registerDeviceExtensionRuntime;
