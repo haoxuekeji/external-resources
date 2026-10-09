@@ -105,8 +105,8 @@ function registerDeviceExtensionRuntime (runtime) {
             const scl = clampInteger(args.SCL, 0, 48, 22);
             const address = normalizeAddress(args.ADDR);
             const classSource = JSON.stringify(LCD1602_CLASS_SOURCE);
-            const code = `from machine import Pin, SoftI2C\nimport time\nexec(${classSource})\n` +
-                `_ob_lcd_i2c = SoftI2C(sda=Pin(${sda}), scl=Pin(${scl}))\n` +
+            const code = `from machine import Pin, I2C\nimport time\nexec(${classSource})\n` +
+                `_ob_lcd_i2c = I2C(0, sda=Pin(${sda}), scl=Pin(${scl}))\n` +
                 `_ob_lcd = _OBLCD1602(_ob_lcd_i2c, ${address})`;
             return execLive(code);
         },
@@ -130,6 +130,6 @@ function registerDeviceExtensionRuntime (runtime) {
 }
 
 return registerDeviceExtensionRuntime;
-})();
+}());
 
 exports = registerDeviceExtensionRuntime;

@@ -4,7 +4,7 @@ const espBme280 = formatMessage => ({
         default: 'BME280'
     }),
     extensionId: 'espBme280',
-    version: '1.0.0',
+    version: '1.0.1',
     supportDevice: ['microPythonEsp32', 'microPythonEsp8266'],
     programMode: ['realtime', 'upload'],
     author: 'OpenBlock',

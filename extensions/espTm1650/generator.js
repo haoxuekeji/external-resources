@@ -7,10 +7,10 @@ function registerGenerators (Blockly) {
         const scl = block.getFieldValue('SCL');
         const brightness = block.getFieldValue('BRIGHTNESS');
 
-        Blockly.Python.imports_.espTm1650_machine = 'from machine import Pin, SoftI2C';
+        Blockly.Python.imports_.espTm1650_machine = 'from machine import Pin, I2C';
         Blockly.Python.imports_.espTm1650 = 'import tm1650';
         Blockly.Python.setups_.espTm1650 =
-            `_tm1650_i2c = SoftI2C(sda=Pin(${sda}), scl=Pin(${scl}), freq=100000)\n` +
+            `_tm1650_i2c = I2C(0, sda=Pin(${sda}), scl=Pin(${scl}), freq=100000)\n` +
             `_tm1650 = tm1650.TM1650(_tm1650_i2c, brightness=${brightness})`;
     };
 

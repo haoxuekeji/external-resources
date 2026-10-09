@@ -8,11 +8,11 @@ function registerGenerators (Blockly) {
         const scl = block.getFieldValue('SCL');
         const addr = block.getFieldValue('ADDR');
 
-        Blockly.Python.imports_.espLcd1602_machine = 'from machine import Pin, SoftI2C';
+        Blockly.Python.imports_.espLcd1602_machine = 'from machine import Pin, I2C';
         Blockly.Python.imports_.espLcd1602 = 'import lcd1602';
 
         Blockly.Python.setups_.espLcd1602 =
-            `_lcd = lcd1602.LCD1602(SoftI2C(sda=Pin(${sda}), scl=Pin(${scl})), addr=${addr})`;
+            `_lcd = lcd1602.LCD1602(I2C(0, sda=Pin(${sda}), scl=Pin(${scl})), addr=${addr})`;
 
         return '';
     };

@@ -4,7 +4,7 @@ const espMpu6050 = formatMessage => ({
         default: 'MPU6050'
     }),
     extensionId: 'espMpu6050',
-    version: '1.1.1',
+    version: '1.1.2',
     supportDevice: ['microPythonEsp32', 'microPythonEsp8266'],
     programMode: ['realtime', 'upload'],
     author: 'OpenBlock',

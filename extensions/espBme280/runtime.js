@@ -151,9 +151,9 @@ ${code}`;
         espBme280_init: args => {
             const sda = clampInteger(args && args.SDA, 0, 48, 21);
             const scl = clampInteger(args && args.SCL, 0, 48, 22);
-            const code = `from machine import Pin, SoftI2C
+            const code = `from machine import Pin, I2C
 exec(${JSON.stringify(BME280_CLASS_SOURCE)})
-_ob_bme280 = _OBBME280(SoftI2C(sda=Pin(${sda}), scl=Pin(${scl}), freq=400000))`;
+_ob_bme280 = _OBBME280(I2C(0, sda=Pin(${sda}), scl=Pin(${scl}), freq=400000))`;
             return execLive(code, 10000);
         },
 
@@ -172,6 +172,6 @@ _ob_bme280 = _OBBME280(SoftI2C(sda=Pin(${sda}), scl=Pin(${scl}), freq=400000))`;
 }
 
 return registerDeviceExtensionRuntime;
-})();
+}());
 
 exports = registerDeviceExtensionRuntime;

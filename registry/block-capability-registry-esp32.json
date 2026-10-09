@@ -4,7 +4,7 @@
   "generator": "external-resources-v3/scripts/generate-block-registry.js",
   "source": {
     "repo": "external-resources-v3",
-    "commit": "a827081781b6bc66b49014d912fbe0a6cf3aa5b3"
+    "commit": "eada0d035e4ba4d71d760b9fa5fa07d1b70b20c0"
   },
   "extensionCount": 19,
   "blockCount": 80,
@@ -12,7 +12,7 @@
     {
       "extensionId": "espBme280",
       "name": "BME280",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "supportDevices": [
         "microPythonEsp32",
         "microPythonEsp8266"
@@ -90,7 +90,7 @@
             "available": true,
             "kind": "statement",
             "imports": [
-              "from machine import Pin, SoftI2C",
+              "from machine import Pin, I2C",
               "import bme280"
             ],
             "libraries": [],
@@ -817,7 +817,7 @@
     {
       "extensionId": "espLcd1602",
       "name": "LCD1602",
-      "version": "1.1.1",
+      "version": "1.1.2",
       "supportDevices": [
         "microPythonEsp32",
         "microPythonEsp8266"
@@ -907,7 +907,7 @@
             "available": true,
             "kind": "statement",
             "imports": [
-              "from machine import Pin, SoftI2C",
+              "from machine import Pin, I2C",
               "import lcd1602"
             ],
             "libraries": [],
@@ -1192,7 +1192,7 @@
     {
       "extensionId": "espMpu6050",
       "name": "MPU6050",
-      "version": "1.1.1",
+      "version": "1.1.2",
       "supportDevices": [
         "microPythonEsp32",
         "microPythonEsp8266"
@@ -1294,7 +1294,7 @@
             "available": true,
             "kind": "statement",
             "imports": [
-              "from machine import Pin, SoftI2C",
+              "from machine import Pin, I2C",
               "import mpu6050"
             ],
             "libraries": [],
@@ -2304,7 +2304,7 @@
     {
       "extensionId": "espTm1650",
       "name": "TM1650 4-digit display",
-      "version": "1.0.3",
+      "version": "1.0.4",
       "supportDevices": [
         "microPythonEsp32"
       ],
@@ -2391,7 +2391,7 @@
             "available": true,
             "kind": "statement",
             "imports": [
-              "from machine import Pin, SoftI2C",
+              "from machine import Pin, I2C",
               "import tm1650"
             ],
             "libraries": [],

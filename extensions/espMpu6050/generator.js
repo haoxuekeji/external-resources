@@ -7,11 +7,11 @@ function registerGenerators (Blockly) {
         const sda = block.getFieldValue('SDA');
         const scl = block.getFieldValue('SCL');
 
-        Blockly.Python.imports_.espMpu6050_machine = 'from machine import Pin, SoftI2C';
+        Blockly.Python.imports_.espMpu6050_machine = 'from machine import Pin, I2C';
         Blockly.Python.imports_.espMpu6050 = 'import mpu6050';
 
         Blockly.Python.setups_.espMpu6050 =
-            `_mpu = mpu6050.MPU6050(SoftI2C(sda=Pin(${sda}), scl=Pin(${scl})))`;
+            `_mpu = mpu6050.MPU6050(I2C(0, sda=Pin(${sda}), scl=Pin(${scl})))`;
 
         return '';
     };

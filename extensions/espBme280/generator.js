@@ -7,11 +7,11 @@ function registerGenerators (Blockly) {
         const sda = block.getFieldValue('SDA');
         const scl = block.getFieldValue('SCL');
 
-        Blockly.Python.imports_.espBme280_machine = 'from machine import Pin, SoftI2C';
+        Blockly.Python.imports_.espBme280_machine = 'from machine import Pin, I2C';
         Blockly.Python.imports_.espBme280 = 'import bme280';
 
         Blockly.Python.setups_.espBme280 =
-            `_bme = bme280.BME280(SoftI2C(sda=Pin(${sda}), scl=Pin(${scl})))`;
+            `_bme = bme280.BME280(I2C(0, sda=Pin(${sda}), scl=Pin(${scl})))`;
 
         return '';
     };

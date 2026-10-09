@@ -98,13 +98,13 @@ ${code}`;
             const sda = clampInteger(args && args.SDA, 0, 48, 21);
             const scl = clampInteger(args && args.SCL, 0, 48, 22);
             const classSource = JSON.stringify(MPU6050_CLASS_SOURCE);
-            const code = `from machine import Pin, SoftI2C
+            const code = `from machine import Pin, I2C
 exec(${classSource})
 try:
     _ob_mpu6050_i2c.deinit()
 except Exception:
     pass
-_ob_mpu6050_i2c = SoftI2C(sda=Pin(${sda}), scl=Pin(${scl}), freq=400000)
+_ob_mpu6050_i2c = I2C(0, sda=Pin(${sda}), scl=Pin(${scl}), freq=400000)
 _ob_mpu6050 = _OBMPU6050(_ob_mpu6050_i2c)`;
             return execLive(code);
         },
@@ -125,6 +125,6 @@ _ob_mpu6050 = _OBMPU6050(_ob_mpu6050_i2c)`;
 }
 
 return registerDeviceExtensionRuntime;
-})();
+}());
 
 exports = registerDeviceExtensionRuntime;

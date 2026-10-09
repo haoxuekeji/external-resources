@@ -177,7 +177,7 @@ function registerDeviceExtensionRuntime (runtime) {
             return Promise.resolve();
         }
         const classSource = JSON.stringify(TM1650_CLASS_SOURCE);
-        return peripheral.execLive(`from machine import Pin, SoftI2C\nexec(${classSource})`, INIT_TIMEOUT)
+        return peripheral.execLive(`from machine import Pin, I2C\nexec(${classSource})`, INIT_TIMEOUT)
             .then(() => {
                 if (typeof peripheral.ensureLiveObject === 'function') {
                     return peripheral.ensureLiveObject('_ob_tm1650_cls', '');
@@ -192,7 +192,7 @@ function registerDeviceExtensionRuntime (runtime) {
             const scl = clampInteger(args.SCL, 0, 48, 22);
             const brightness = clampInteger(args.BRIGHTNESS, 1, 8, 4);
             return ensureClass().then(() => execLive(
-                `_ob_tm1650_i2c = SoftI2C(sda=Pin(${sda}), scl=Pin(${scl}), freq=100000)\n` +
+                `_ob_tm1650_i2c = I2C(0, sda=Pin(${sda}), scl=Pin(${scl}), freq=100000)\n` +
                 `_ob_tm1650 = _OBTM1650(_ob_tm1650_i2c, brightness=${brightness})`,
                 INIT_TIMEOUT
             ));
@@ -227,6 +227,6 @@ function registerDeviceExtensionRuntime (runtime) {
 }
 
 return registerDeviceExtensionRuntime;
-})();
+}());
 
 exports = registerDeviceExtensionRuntime;

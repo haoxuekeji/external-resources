@@ -4,7 +4,7 @@ const espTm1650 = formatMessage => ({
         default: 'TM1650 4-digit display'
     }),
     extensionId: 'espTm1650',
-    version: '1.0.3',
+    version: '1.0.4',
     supportDevice: ['microPythonEsp32'],
     programMode: ['realtime', 'upload'],
     author: 'OpenBlock',
