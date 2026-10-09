@@ -17,7 +17,7 @@ function registerBlocks (Blockly) {
     Blockly.Blocks.espOled_init = {
         init: function () {
             this.jsonInit({
-                message0: message('ESPOLED_INIT', 'init OLED display SDA %1 SCL %2'),
+                message0: message('ESPOLED_INIT', 'init OLED display SDA %1 SCL %2 address %3'),
                 args0: [
                     {
                         type: 'field_dropdown',
@@ -28,6 +28,15 @@ function registerBlocks (Blockly) {
                         type: 'field_dropdown',
                         name: 'SCL',
                         options: digitalPins
+                    },
+                    {
+                        type: 'field_dropdown',
+                        name: 'ADDR',
+                        options: [
+                            [message('ESPOLED_ADDR_AUTO', 'auto'), 'auto'],
+                            ['0x3C', '0x3C'],
+                            ['0x3D', '0x3D']
+                        ]
                     }
                 ],
                 colour: color,

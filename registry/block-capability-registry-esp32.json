@@ -4,7 +4,7 @@
   "generator": "external-resources-v3/scripts/generate-block-registry.js",
   "source": {
     "repo": "external-resources-v3",
-    "commit": "13f9499eb69e3d5b8a3000f6e3110b1b6b38d3ae"
+    "commit": "56b302b1c0b0095f665a4d40a9c159485e725c9e"
   },
   "extensionCount": 19,
   "blockCount": 80,
@@ -1598,7 +1598,7 @@
     {
       "extensionId": "espOled",
       "name": "OLED Display",
-      "version": "1.1.4",
+      "version": "1.1.5",
       "supportDevices": [
         "microPythonEsp32",
         "microPythonEsp8266"
@@ -1656,6 +1656,17 @@
                 "4",
                 "5"
               ]
+            },
+            {
+              "name": "ADDR",
+              "kind": "dropdown",
+              "dynamicOptions": null,
+              "allowedValues": [
+                "auto",
+                "0x3C",
+                "0x3D"
+              ],
+              "default": "auto"
             }
           ],
           "pythonMapping": {

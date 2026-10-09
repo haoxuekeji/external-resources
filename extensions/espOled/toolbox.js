@@ -7,6 +7,7 @@ function registerToolboxs () {
     <block type="espOled_init" id="espOled_init">
         <field name="SDA">21</field>
         <field name="SCL">22</field>
+        <field name="ADDR">auto</field>
     </block>
     <block type="espOled_clear" id="espOled_clear">
     </block>

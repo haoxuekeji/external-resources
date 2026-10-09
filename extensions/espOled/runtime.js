@@ -12,9 +12,9 @@
 // register hook through a redeclarable `var`.
 var registerDeviceExtensionRuntime = (function () {
 const OLED_CLASS_SOURCE = `class _OBSSD1306:
-    def __init__(self, i2c):
+    def __init__(self, i2c, addr=None):
         self.i2c = i2c
-        self.addr = self._resolve_addr()
+        self.addr = addr if addr is not None else self._resolve_addr()
         self.width = 128
         self.height = 64
         self.pages = 8
@@ -120,6 +120,9 @@ ${code}`;
         espOled_init: args => {
             const sda = clampInteger(args && args.SDA, 0, 48, 21);
             const scl = clampInteger(args && args.SCL, 0, 48, 22);
+            // 地址：auto（默认）= 板端自动探测；0x3C / 0x3D = 直接用所选地址。
+            const rawAddr = args && args.ADDR;
+            const addrArg = (rawAddr === '0x3C' || rawAddr === '0x3D') ? `, ${rawAddr}` : '';
             const classSource = JSON.stringify(OLED_CLASS_SOURCE);
             const code = `from machine import Pin, SoftI2C
 import framebuf
@@ -129,7 +132,7 @@ try:
 except Exception:
     pass
 _ob_oled_i2c = SoftI2C(sda=Pin(${sda}), scl=Pin(${scl}), freq=400000)
-_ob_oled = _OBSSD1306(_ob_oled_i2c)`;
+_ob_oled = _OBSSD1306(_ob_oled_i2c${addrArg})`;
             return execLive(code);
         },
 

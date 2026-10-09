@@ -33,7 +33,8 @@ function registerBlocksMessages (Blockly) {
     Object.assign(Blockly.ScratchMsgs.locales["en"],
         {
             "ESPOLED_CATEGORY": "OLED Display",
-            "ESPOLED_INIT": "init OLED display SDA %1 SCL %2",
+            "ESPOLED_INIT": "init OLED display SDA %1 SCL %2 address %3",
+            "ESPOLED_ADDR_AUTO": "auto",
             "ESPOLED_TEXT": "display text %1 at x %2 y %3",
             "ESPOLED_PIXEL": "draw pixel at x %1 y %2",
             "ESPOLED_LINE": "draw line from x1 %1 y1 %2 to x2 %3 y2 %4",
@@ -45,7 +46,8 @@ function registerBlocksMessages (Blockly) {
     Object.assign(Blockly.ScratchMsgs.locales["ru"],
         {
             "ESPOLED_CATEGORY": "OLED дисплей",
-            "ESPOLED_INIT": "инициализировать OLED SDA %1 SCL %2",
+            "ESPOLED_INIT": "инициализировать OLED SDA %1 SCL %2 адрес %3",
+            "ESPOLED_ADDR_AUTO": "авто",
             "ESPOLED_TEXT": "показать текст %1 в x %2 y %3",
             "ESPOLED_PIXEL": "нарисовать точку x %1 y %2",
             "ESPOLED_LINE": "нарисовать линию от x1 %1 y1 %2 до x2 %3 y2 %4",
@@ -57,7 +59,8 @@ function registerBlocksMessages (Blockly) {
     Object.assign(Blockly.ScratchMsgs.locales["zh-cn"],
         {
             "ESPOLED_CATEGORY": "OLED 显示屏",
-            "ESPOLED_INIT": "初始化 OLED 显示屏 SDA %1 SCL %2",
+            "ESPOLED_INIT": "初始化 OLED 显示屏 SDA %1 SCL %2 地址 %3",
+            "ESPOLED_ADDR_AUTO": "自动",
             "ESPOLED_TEXT": "在坐标 x %2 y %3 显示文字 %1",
             "ESPOLED_PIXEL": "画点 x %1 y %2",
             "ESPOLED_LINE": "画线 从 x1 %1 y1 %2 到 x2 %3 y2 %4",
@@ -69,7 +72,8 @@ function registerBlocksMessages (Blockly) {
     Object.assign(Blockly.ScratchMsgs.locales["zh-tw"],
         {
             "ESPOLED_CATEGORY": "OLED 顯示屏",
-            "ESPOLED_INIT": "初始化 OLED 顯示屏 SDA %1 SCL %2",
+            "ESPOLED_INIT": "初始化 OLED 顯示屏 SDA %1 SCL %2 位址 %3",
+            "ESPOLED_ADDR_AUTO": "自動",
             "ESPOLED_TEXT": "在坐標 x %2 y %3 顯示文字 %1",
             "ESPOLED_PIXEL": "畫點 x %1 y %2",
             "ESPOLED_LINE": "畫線 從 x1 %1 y1 %2 到 x2 %3 y2 %4",
