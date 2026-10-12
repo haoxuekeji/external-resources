@@ -4,7 +4,7 @@ const espEvents = formatMessage => ({
         default: 'Events'
     }),
     extensionId: 'espEvents',
-    version: '1.0.0',
+    version: '1.0.1',
     supportDevice: ['microPythonEsp32'],
     programMode: ['realtime', 'upload'],
     author: 'OpenBlock',

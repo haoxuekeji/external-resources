@@ -4,7 +4,7 @@
   "generator": "external-resources-v3/scripts/generate-block-registry.js",
   "source": {
     "repo": "external-resources-v3",
-    "commit": "eada0d035e4ba4d71d760b9fa5fa07d1b70b20c0"
+    "commit": "d6356ce90c7655807ebf77eb69f9c91a057c896e"
   },
   "extensionCount": 19,
   "blockCount": 80,
@@ -618,7 +618,7 @@
     {
       "extensionId": "espEvents",
       "name": "Events",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "supportDevices": [
         "microPythonEsp32"
       ],

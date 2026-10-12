@@ -10,11 +10,18 @@ function registerBlocks (Blockly) {
         return typeof value === 'string' && value ? value : fallback;
     };
 
-    // Digital input pins for the button hat; falls back to a sane ESP32 set
-    // (GPIO0 hosts the on-board BOOT button) when the live device pin list is
-    // unavailable (e.g. headless generation).
-    const requestedPins = Blockly.Device && typeof Blockly.Device.getPinOptions === 'function' ?
-        Blockly.Device.getPinOptions('microPython_pin_esp32SetDigitalInput') : null;
+    // Digital input pins for the button hat, taken from the device's own
+    // "read digital pin" block (there is no SetDigitalInput block on ESP32).
+    // Blockly.Device.getPinOptions throws when that block is not in the
+    // current flyout, so guard it and fall back to a sane ESP32 set (GPIO0
+    // hosts the on-board BOOT button) — e.g. headless generation.
+    let requestedPins = null;
+    try {
+        requestedPins = Blockly.Device && typeof Blockly.Device.getPinOptions === 'function' ?
+            Blockly.Device.getPinOptions('microPython_pin_esp32ReadDigitalPin') : null;
+    } catch (e) {
+        requestedPins = null;
+    }
     const digitalPins = Array.isArray(requestedPins) && requestedPins.length > 0 ?
         requestedPins : [['0', '0'], ['4', '4'], ['5', '5'], ['13', '13'], ['14', '14']];
 
