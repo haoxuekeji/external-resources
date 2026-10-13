@@ -16,9 +16,14 @@ class _OBEspNow:
     BROADCAST = 'ff:ff:ff:ff:ff:ff'
 
     def __init__(self):
-        self._sta = network.WLAN(network.STA_IF)
+        # Resolve the modules here as well: after a forced stop the REPL
+        # may run with globals() != locals() (firmware < 2026-10-13) and
+        # the module-level imports then land in the wrong namespace.
+        import network as _network
+        import espnow as _espnow
+        self._sta = _network.WLAN(_network.STA_IF)
         self._sta.active(True)
-        self._now = espnow.ESPNow()
+        self._now = _espnow.ESPNow()
         self._now.active(True)
         self._peers = set()
         self.last_message = ''
@@ -113,7 +118,11 @@ ${code}`;
         espEspNow_init: () => {
             pollInFlight = false;
             messagePending = false;
-            const code = `exec(${JSON.stringify(ESPNOW_CLASS_SOURCE)})
+            // Plain statements rather than exec(<source>): exec() binds its
+            // imports in locals() and the class methods look them up in
+            // globals(); the two differ after a forced stop on older
+            // firmware (NameError: name 'network' isn't defined).
+            const code = `${ESPNOW_CLASS_SOURCE}
 _ob_espnow = _OBEspNow()`;
             return execLive(code, 10000);
         },
@@ -174,6 +183,6 @@ _ob_espnow = _OBEspNow()`;
 }
 
 return registerDeviceExtensionRuntime;
-})();
+}());
 
 exports = registerDeviceExtensionRuntime;

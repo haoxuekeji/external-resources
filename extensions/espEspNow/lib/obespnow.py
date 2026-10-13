@@ -8,9 +8,11 @@ class OBEspNow:
     BROADCAST = 'ff:ff:ff:ff:ff:ff'
 
     def __init__(self):
-        self._sta = network.WLAN(network.STA_IF)
+        import network as _network
+        import espnow as _espnow
+        self._sta = _network.WLAN(_network.STA_IF)
         self._sta.active(True)
-        self._now = espnow.ESPNow()
+        self._now = _espnow.ESPNow()
         self._now.active(True)
         self._peers = set()
         self.last_message = ''
